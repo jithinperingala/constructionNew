@@ -1,10 +1,16 @@
 <!-- <app-navbar></app-navbar> -->
-<ul class="nav">
+  <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" routerLink="employee/registration">Registration</a>
+      <a class="nav-link active" href="#">Active</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="employee/search">Search</a>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Employee</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" routerLink="employee/registration">Registration</a>
+        <a class="dropdown-item" routerLink="employee/search">search</a>
+        <a class="dropdown-item" routerLink="employee/employeeAttendence">attendence</a>
+        <a class="dropdown-item" routerLink="employee/employeeAllocation">Allocation</a>
+      </div>
     </li>
     
   </ul>

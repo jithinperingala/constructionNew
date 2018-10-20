@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { EmployeeService } from '../shared/employee.service';
-import { UserService } from '../../../shared/services/user.service';
+
 import{ActivatedRoute} from '@angular/router'
 import { NotifyService } from 'src/app/core/services/notification/notify.service';
+import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
   selector: 'app-payment',

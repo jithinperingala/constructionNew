@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 import { NavigateService } from 'src/app/core/services/navigation/navigate.service';
 import { EmployeeService } from 'src/app/modules/employee/shared/employee.service';
 import { NotifyService } from 'src/app/core/services/notification/notify.service';
-import { config } from 'src/app/configs/app-settings.config'
 
 @Component({
   selector: 'app-emp-reg',
@@ -121,22 +120,22 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
     if (this.searchId) {
       this.EmployeeService.getEmployeeBysearchKey(this.searchId).subscribe(res => {
         console.log("employee to edit", res)
-        this.cardForm.controls.empName.setValue(res.first_name)
-        this.cardForm.controls.empType.setValue(res.employee_type)
-        this.cardForm.controls.aadarNumber.setValue(res.identity_card_number)
-        this.cardForm.controls.insuranceNumber.setValue(res.insurance_number)
-        this.cardForm.controls.address.setValue(res.address)
-        this.cardForm.controls.contactno.setValue(res.mobile)
+        this.cardForm.controls.empName.setValue(res['first_name'])
+        this.cardForm.controls.empType.setValue(res['employee_type'])
+        this.cardForm.controls.aadarNumber.setValue(res['identity_card_number'])
+        this.cardForm.controls.insuranceNumber.setValue(res['insurance_number'])
+        this.cardForm.controls.address.setValue(res['address'])
+        this.cardForm.controls.contactno.setValue(res['mobile'])
 
-        this.cardForm.controls.email.setValue(res.email)
-        this.cardForm.controls.officialNumber.setValue(res.official_number)
-        this.cardForm.controls.dob.setValue(new Date(res.date_of_birth).toISOString().substring(0, 10))
-        this.cardForm.controls.gender.setValue(res.gender)
-        this.cardForm.controls.contactPerson.setValue(res.ref_contact_person)
-        this.cardForm.controls.contactPersonMobile.setValue(res.ref_contact_person_mobile)
-        this.cardForm.controls.contactPesonRelation.setValue(res.ref_relation)
-        this.cardForm.controls.wagesType.setValue(res.salary_type)
-        this.cardForm.controls.salaryAmount.setValue(res.salary)
+        this.cardForm.controls.email.setValue(res['email'])
+        this.cardForm.controls.officialNumber.setValue(res['official_number'])
+        this.cardForm.controls.dob.setValue(new Date(res['date_of_birth']).toISOString().substring(0, 10))
+        this.cardForm.controls.gender.setValue(res['gender'])
+        this.cardForm.controls.contactPerson.setValue(res['ref_contact_person'])
+        this.cardForm.controls.contactPersonMobile.setValue(res['ref_contact_person_mobile'])
+        this.cardForm.controls.contactPesonRelation.setValue(res['ref_relation'])
+        this.cardForm.controls.wagesType.setValue(res['salary_type'])
+        this.cardForm.controls.salaryAmount.setValue(res['salary'])
       })
     }
   }

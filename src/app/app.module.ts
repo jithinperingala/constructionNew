@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http'
 import { ModalModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
-import { NotificationComponent } from 'src/app/core/services/notification/notification.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './modules/login/login.component';
 import { NotificationModule } from './core/services/notification/notification.module';
@@ -14,7 +13,6 @@ import { NotificationModule } from './core/services/notification/notification.mo
 @NgModule({
   declarations: [
     AppComponent,
-    NotificationComponent,
     LoginComponent,
   ],
   imports: [

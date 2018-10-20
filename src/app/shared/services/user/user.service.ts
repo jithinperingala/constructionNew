@@ -7,9 +7,14 @@ export class UserService {
   private loggedUserID
   constructor() { }
   set loggeduser(userid) {
+    localStorage.setItem("usedData",userid)
     this.loggedUserID = userid
   }
   get loggeduser() {
+    if(this.loggedUserID)
     return this.loggedUserID
+    else{
+      return localStorage.getItem("usedData")
+    }
   }
 }

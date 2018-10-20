@@ -13,15 +13,28 @@ export class EmployeeAllocationComponent implements OnInit {
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
+
+    //Get site Details
     this.employeeService.getEmployeeBysearchKey(" ").subscribe(res => {
-      this.searchdata = res[0]
+      if (res != null)
+        this.searchdata = res[0]
       console.log("")
 
     })
+
+    //get employee based on site
     this.employeeService.getSiteDetails().subscribe(res => {
       console.log("app-emp-reg", res)
-      this.workSites = res[0]
+      if (res)
+        this.workSites = res[0]
     })
   }
 
+  //allocate employee
+  allocateEmployee() {
+    this.employeeService.employeeAllocation()
+  }
+  removeAllocation() {
+    this.employeeService.removeAllocation()
+  }
 }

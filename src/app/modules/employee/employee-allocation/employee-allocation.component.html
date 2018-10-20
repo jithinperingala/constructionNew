@@ -1,82 +1,3 @@
-<!-- <select id="workSite" class="mdb-select form-control" [(ngModel)]="workSite">
-  <option *ngFor="let site of workSites" [value]="site.SiteName">{{site.SiteName}}</option>
-</select>
-
-<div class="px-4">
-<table>
-  <tr>
-    <th>Select From below employess</th>
-    <th></th>
-    <th>Employees in {{workSite}}</th>
-  </tr>
-  <tr>
-    <td>
-
-  <input type="text">
-  <table class="table table-hover table-responsive-md mb-0" style="width: 100px;">
-
-
-      <thead>
-          <tr>
-              <th scope="row">Code</th>
-              <th class="th-lg">Name</th>
-              <th class="th-lg">Type</th>
-
-      <th></th>
-      <th></th>
-          </tr>
-      </thead>
- 
-      <tbody >
-          <tr *ngFor="let emp of searchdata">
-              <th scope="row">{{emp.employee_code}}</th>
-              <td>{{emp.first_name}}</td>
-              <td>{{emp.employee_type_name}}</td>
-         
-              <td>
-                  <input type="checkbox">
-              </td>
-            
-             
-          </tr>
-         
-      </tbody>
-   
-  </table>
-</td>
-<td><button class="btn btn-pink waves-light">Allocate =></button></td>
-<td>
-  <table class="table table-hover table-responsive-md mb-0" style="width: 100px;">
-
-
-    <thead>
-        <tr>
-            <th scope="row">Code</th>
-            <th class="th-lg">Name</th>
-            <th class="th-lg">Type</th>
-
-    <th></th>
-    <th></th>
-        </tr>
-    </thead>
-    
-    <tbody >
-        <tr *ngFor="let emp of searchdata">
-            <th scope="row">{{emp.employee_code}}</th>
-            <td>{{emp.first_name}}</td>
-            <td>{{emp.employee_type_name}}</td>
-           
-        </tr>
-       
-    </tbody>
-
-</table>
-</td>
-</tr>
-</table>
-   -->
-
-
 <div class="row">
         <div class="col">
             <div class="card">
@@ -100,69 +21,58 @@
                         <option *ngFor="let site of workSites" [value]="site.SiteName">{{site.SiteName}}</option>
                       </select>
                 </div>
-              </form>
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="form-group">
-                  <!-- <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select> -->
-                  <input class="form-control" placeholder="Search" type="text">
-                  </div>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Code</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Current Site</th>
-                        <th scope="col"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let emp of searchdata">
+                 <!-- Search Bar Here -->
+
+              <div class="input-group mt-3 mb-3">
+                <input class="form-control my-0 py-1 grey-border" (keydown.enter)="getEmployee($event)" type="text" [(ngModel)]="searchKey" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+              <!-- <button type="submit" class="btn" (click)="getEmployee($event)">
+                Search
+              </button> -->
+            </div>
+          </div>
+
+          <!-- Search Bar Here -->
+
+          <table class="table table-hover">
+              <thead>
+    
+                <tr>
+                        <th scope="col" (click)="sortWithTitle('employee_code')">Code</th>
+                        <th scope="col" (click)="sortWithTitle('first_name')">Name</th>
+                        <th scope="col" (click)="sortWithTitle('mobile')">Contact Number</th>
+                        <th scope="col" (click)="sortWithTitle('identity_card_number')">Aadhaar Number</th>
+                        <th scope="col" (click)="sortWithTitle('insurance_number')">Insurance Number</th>
+                        <th scope="col" (click)="sortWithTitle('address')">Address</th>
+                <th></th>
+                <th></th>
+                    </tr>
+              </thead>
+              <tbody>
+                    <tr *ngFor="let emp of searchdata" [ngClass]="{'has-error': emp.insurance_number==''}">
                             <th scope="row">{{emp.employee_code}}</th>
                             <td>{{emp.first_name}}</td>
-                            <td>{{emp.employee_type_name}}</td>  
-                            <td>{{emp.employee_type_name}}</td>              
-                        <td><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></td>
-                      </tr>         
-                    </tbody>
-                  </table>
-                </div>
-                <div class="col-md-2">
-                  <button type="submit" class="btn btn-primary full-width mt-3 mb-3">Allocate >></button>
-                  <button type="submit" class="btn btn-danger full-width mt-3 mb-3">Remove</button>
-                </div>
-                <div class="col-md-5">
-                  <div class="form-group">
-                  <!-- <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select> -->
-                  <input class="form-control" placeholder="Search" type="text">
-                  </div>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Code</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Type</th>
-                        <th scope="col"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                            <tr *ngFor="let emp of searchdata">
-                                    <th scope="row">{{emp.employee_code}}</th>
-                                    <td>{{emp.first_name}}</td>
-                                    <td>{{emp.employee_type_name}}</td> 
-                        <!-- <td><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></td> -->
-                      </tr>         
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+                            <td>{{emp.mobile}}</td>
+                            <td>{{emp.identity_card_number}}</td>
+                            <td>{{emp.insurance_number}}</td>
+                            <td>{{emp.address}}</td>
+                            <td>
+                                <button class="btn btn-link" (click)="editEmployee(emp.employee_id)">
+                                        <i class="material-icons">add_box</i>
+                                </button>
+                            </td>
+                           <td>
+                               <button class="btn btn-link" (click)="employeeToDelete=emp" data-toggle="modal" data-target="#exampleModal">
+                                    <i class="material-icons">remove_circle</i>
+                                </button>
+                            </td>
+                           
+                        </tr>
+                       
+              </tbody>
+            </table>
+
+              </form>
             </div>
           </div>
         </div>

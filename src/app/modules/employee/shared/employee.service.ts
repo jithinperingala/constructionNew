@@ -30,7 +30,7 @@ export class EmployeeService {
         console.log("this.employeeDetails", this.employeeDetails)
       })
     )
-      .pipe(map(res => res[0][0]))
+      .pipe(map(res => {if (res && res[0])res[0][0]}))
   }
 
   getEmployeeByemployeeType(key, emptype) {
@@ -134,6 +134,12 @@ export class EmployeeService {
   }
   saveAttendence(employee,date) {
 
+  }
+  employeeAllocation(){
+
+  }
+  removeAllocation(){
+    
   }
 }
 
