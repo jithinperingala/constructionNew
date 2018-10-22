@@ -1,31 +1,41 @@
 <div class="row">
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">Site Allocation</h3>
-                    <p class="page-dir"> <i class="material-icons">home</i>Home / Site Allocation</p>
-                </div>
-            </div>
-        </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Site Allocation</h3>
+        <p class="page-dir"> <i class="material-icons">home</i>Home / Site Allocation</p>
+      </div>
     </div>
+  </div>
+</div>
 
-        
- 
-    <div class="row">
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <select id="inputState" class="form-control" name="workSite" [(ngModel)]="workSite">
-                        <option *ngFor="let site of workSites" [value]="site.SiteName">{{site.SiteName}}</option>
-                      </select>
-                </div>
-                 <!-- Search Bar Here -->
 
-              <div class="input-group mt-3 mb-3">
-                <input class="form-control my-0 py-1 grey-border" (keydown.enter)="getEmployee($event)" type="text" [(ngModel)]="searchKey" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <form>
+          <div class="input-group mt-3 mb-3">
+            <input class="form-control my-0 py-1 grey-border" type="date" [(ngModel)]="date" name="Search" placeholder="Search"
+              aria-label="Search">
+            <div class="input-group-append">
+              <!-- <button type="submit" class="btn" (click)="getEmployee($event)">
+                    Search
+                  </button> -->
+            </div>
+          </div>
+          <div class="form-group">
+            <select id="inputState" class="form-control" (change)="getallocatedEmployee()" name="workSite" [(ngModel)]="workSite">
+              <option *ngFor="let site of workSites"  [value]="site.SiteId">{{site.SiteName}}</option>
+            </select>
+          </div>
+          <!-- Search Bar Here -->
+
+          <div class="input-group mt-3 mb-3">
+            <input class="form-control my-0 py-1 grey-border" (keydown.enter)="getallocatedEmployee()" type="text"
+              [(ngModel)]="searchKey" name="Search" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
               <!-- <button type="submit" class="btn" (click)="getEmployee($event)">
                 Search
               </button> -->
@@ -34,46 +44,46 @@
 
           <!-- Search Bar Here -->
 
-          <table class="table table-hover">
-              <thead>
-    
-                <tr>
-                        <th scope="col" (click)="sortWithTitle('employee_code')">Code</th>
-                        <th scope="col" (click)="sortWithTitle('first_name')">Name</th>
-                        <th scope="col" (click)="sortWithTitle('mobile')">Contact Number</th>
-                        <th scope="col" (click)="sortWithTitle('identity_card_number')">Aadhaar Number</th>
-                        <th scope="col" (click)="sortWithTitle('insurance_number')">Insurance Number</th>
-                        <th scope="col" (click)="sortWithTitle('address')">Address</th>
-                <th></th>
-                <th></th>
-                    </tr>
-              </thead>
-              <tbody>
-                    <tr *ngFor="let emp of searchdata" [ngClass]="{'has-error': emp.insurance_number==''}">
-                            <th scope="row">{{emp.employee_code}}</th>
-                            <td>{{emp.first_name}}</td>
-                            <td>{{emp.mobile}}</td>
-                            <td>{{emp.identity_card_number}}</td>
-                            <td>{{emp.insurance_number}}</td>
-                            <td>{{emp.address}}</td>
-                            <td>
-                                <button class="btn btn-link" (click)="editEmployee(emp.employee_id)">
-                                        <i class="material-icons">add_box</i>
-                                </button>
-                            </td>
-                           <td>
-                               <button class="btn btn-link" (click)="employeeToDelete=emp" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="material-icons">remove_circle</i>
-                                </button>
-                            </td>
-                           
-                        </tr>
-                       
-              </tbody>
-            </table>
 
-              </form>
-            </div>
-          </div>
-        </div>
+          <table class="table table-hover">
+            <thead>
+
+              <tr>
+                <th scope="col" (click)="sortWithTitle('EmployeeCode')">Code</th>
+                <th scope="col" (click)="sortWithTitle('FirstName')">Name</th>
+                <th scope="col" (click)="sortWithTitle('SiteName')">Current Site</th>
+                <th scope="col" (click)="sortWithTitle('employee_type_name')">EmployeeType</th>
+                <th scope="col" (click)="sortWithTitle('insurance_number')">Allocate To</th>
+                <th scope="col" (click)="sortWithTitle('address')">Remove Allocation</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let emp of searchdata" [ngClass]="{'has-error': emp.insurance_number==''}">
+                <th scope="row">{{emp.EmployeeCode}}</th>
+                <td>{{emp.FirstName}}</td>
+                <td>{{emp.SiteName}}</td>
+                <td>{{emp.employee_type_name}}</td>
+                <td>
+                    <select class="form-control"  name="workSite1">
+                        <option *ngFor="let allocationSite of workSites"  [value]="allocationSite.SiteId">{{allocationSite.SiteName}}</option>
+                      </select>
+
+                </td>
+                <td>
+                  <button class="btn btn-link"  data-toggle="modal" data-target="#exampleModal">
+                    <i class="material-icons">remove_circle</i>
+                  </button>
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+
+        </form>
+      </div>
     </div>
+  </div>
+</div>

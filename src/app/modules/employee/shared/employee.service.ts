@@ -135,8 +135,8 @@ export class EmployeeService {
   saveAttendence(employee,date) {
 
   }
-  employeeAllocation(){
-
+  getallocatedEmployes(workSite,searchKey){
+    return this.http._get(this.pathgen.getallocatedEmployes+"?siteID="+workSite+"&searchKey="+searchKey)
   }
   removeAllocation(){
     

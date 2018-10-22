@@ -22,6 +22,7 @@ export class Pathgenerator {
             validateUser:"validateUser/login",
 
             getSiteDetails:"site/getSiteDetails",
+            getallocatedEmployes:"site/getallocatedEmployes",
 
             EmployeePayment:"employee/payment",
             EmployeePaymentReport:"employee/paymentReport"
@@ -76,5 +77,8 @@ export class Pathgenerator {
     }
     get employeePaymentReport(){
         return this.generatePath(this.uriCollection.EmployeePaymentReport)
+    }
+    get getallocatedEmployes(){
+        return this.generatePath(this.uriCollection.getallocatedEmployes)
     }
 }
