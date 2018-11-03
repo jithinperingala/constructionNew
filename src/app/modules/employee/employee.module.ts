@@ -12,9 +12,10 @@ import { EmployeeAllocationComponent } from './employee-allocation/employee-allo
 import { EmployeeAttendenceComponent } from './employee-attendence/employee-attendence.component';
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MeterialModule } from 'src/app/shared/modules/meterial/meterial.module';
 @NgModule({
   imports: [
-    EmployeeRoutingModule,FormsModule,ReactiveFormsModule,CommonModule,SharedModule
+    EmployeeRoutingModule,FormsModule,ReactiveFormsModule,CommonModule,SharedModule,MeterialModule
   ],
   declarations: [EmployeeComponent, 
     EmployeeRegistrationComponent,

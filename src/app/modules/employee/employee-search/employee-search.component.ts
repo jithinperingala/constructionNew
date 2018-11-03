@@ -25,11 +25,11 @@ export class EmployeeSearchComponent implements OnInit {
       console.log("app-emp-reg",res)
       this.employeetype = res[0]
     })
-    this.getEmployee(" ")
+    this.getEmployee()
   }
 
   employeeToDelete
-  getEmployee(eve) {
+  getEmployee() {
     console.log("empType",this.empType)
     console.log("after trin", this.searchKey)
     this.employeeSer.getEmployeeByemployeeType(this.searchKey,this.empType).subscribe(res => {

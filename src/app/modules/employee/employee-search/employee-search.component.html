@@ -120,7 +120,7 @@
                     <i class="fa fa-suitcase prefix grey-text"></i>
                     
                     <!--Blue select-->
-                    <select id="empType" class="mdb-select form-control" [(ngModel)]="empType" mdbInputDirective>
+                    <select id="empType" (change)="getEmployee()" class="mdb-select form-control" [(ngModel)]="empType" mdbInputDirective>
                       <option  *ngFor="let type of employeetype" [value]="type.type_id">{{type.employee_type_name}}</option>
                     </select>
                     <label for="empType" class="font-weight-light">Work Type</label>

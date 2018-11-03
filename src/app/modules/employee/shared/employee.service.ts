@@ -4,6 +4,7 @@ import { Pathgenerator } from 'src/app/core/services/ajax/pathgenerator';
 import { tap, map } from 'rxjs/operators';
 import { Observable, observable, of } from 'rxjs';
 import { containsElement } from '@angular/animations/browser/src/render/shared';
+import { SessionService } from 'src/app/core/services/session/session';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { containsElement } from '@angular/animations/browser/src/render/shared';
 export class EmployeeService {
   employeeDetails: Array<object>
   employeeType: Array<object>
-  constructor(private http: AjaxService, private pathgen: Pathgenerator) {
+  constructor(private http: AjaxService, private pathgen: Pathgenerator,private session:SessionService) {
   }
   createEmployee(empObject) {
     return this.http._post(this.pathgen.createUpdateEmployee(), empObject)
@@ -37,7 +38,7 @@ export class EmployeeService {
     console.log("Service key", key)
     if (!key) { key = " " }
     else { key = key.trim() }
-    return this.http._get(this.pathgen.getAllEmployeebyId() + "?key=" + key + "&emptype=" + emptype).pipe(
+    return this.http._get(this.pathgen.getAllEmployeebyId() + "?key=" + key + "&emptype=" + emptype+ "&userID=" + this.session.userInfo['FkEmployee']).pipe(
       tap(res => {
         this.employeeDetails = res[0]
         console.log("this.employeeDetails", this.employeeDetails)
@@ -132,14 +133,23 @@ export class EmployeeService {
       (error) => console.log(error)
     );
   }
-  saveAttendence(employee,date) {
-
+  saveAttendence(employee) {
+    return this.http._post(this.pathgen.saveEmployeeAttendence,employee)
   }
   getallocatedEmployes(workSite,searchKey){
     return this.http._get(this.pathgen.getallocatedEmployes+"?siteID="+workSite+"&searchKey="+searchKey)
   }
-  removeAllocation(){
-    
+  removeAllocation(data){
+    return this.http._post(this.pathgen.removeallocatedEmployes,data)
+
+  }
+  saveAllocation(data){
+    console.log(data)
+    return this.http._post(this.pathgen.saveallocatedEmployes,data)
+
+  }
+  getAttendence(workSite,date){
+    return this.http._get(this.pathgen.saveEmployeeAttendence+"?siteid="+workSite+"&date="+date)
   }
 }
 

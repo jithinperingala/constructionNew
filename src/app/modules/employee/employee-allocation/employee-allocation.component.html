@@ -10,7 +10,99 @@
 </div>
 
 
+<form class="example-form">
+  <div class="example-container">
+    <mat-form-field class="example-full-width">
 
+      <input matInput name="picker" [matDatepicker]="picker" placeholder="Choose a date" [formControl]="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select name="workSite" (selectionChange)="getallocatedEmployee()" placeholder="Select a Site" [(ngModel)]="workSite">
+        <mat-option *ngFor="let site of workSites" [value]="site.SiteId">
+          {{site.SiteName}}
+        </mat-option>
+      </mat-select>
+
+
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput (keydown.enter)="getallocatedEmployee()" [(ngModel)]="searchKey" name="Search" placeholder="Search">
+    </mat-form-field>
+
+
+    <table mat-table [dataSource]="searchdata" matSort class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="EmployeeCode">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Employee code </th>
+        <td mat-cell *matCellDef="let element"> {{element.EmployeeCode}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="FirstName">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="employee_type_name">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.employee_type_name}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="allocateTo">
+        <th mat-header-cell *matHeaderCellDef>
+          Allocate site
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-select name="workSite1" (selectionChange)="saveAllocation(element)" placeholder="Select a Site"  [(ngModel)]="modelData[element.EmployeeID]">
+                <mat-option *ngFor="let allocationSite of tempWorksite" [value]="allocationSite.SiteId">
+                  {{allocationSite.SiteName}}
+                </mat-option>
+              </mat-select>
+        </td>
+      </ng-container>
+
+      <ng-container  matColumnDef="removeAllocation">
+          <th mat-header-cell *matHeaderCellDef>
+            <label *ngIf="workSite !=0"> Remove</label>
+             
+          </th>
+          <td  mat-cell *matCellDef="let element">
+              <button *ngIf="workSite !=0" mat-raised-button (click)="removeAllocation(element)" color="warn">Remove</button>
+          </td>
+        </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
 <div class="row">
   <div class="col">
     <div class="card">
@@ -20,9 +112,7 @@
             <input class="form-control my-0 py-1 grey-border" type="date" [(ngModel)]="date" name="Search" placeholder="Search"
               aria-label="Search">
             <div class="input-group-append">
-              <!-- <button type="submit" class="btn" (click)="getEmployee($event)">
-                    Search
-                  </button> -->
+             
             </div>
           </div>
           <div class="form-group">
@@ -30,19 +120,15 @@
               <option *ngFor="let site of workSites"  [value]="site.SiteId">{{site.SiteName}}</option>
             </select>
           </div>
-          <!-- Search Bar Here -->
-
+        
           <div class="input-group mt-3 mb-3">
             <input class="form-control my-0 py-1 grey-border" (keydown.enter)="getallocatedEmployee()" type="text"
               [(ngModel)]="searchKey" name="Search" placeholder="Search" aria-label="Search">
             <div class="input-group-append">
-              <!-- <button type="submit" class="btn" (click)="getEmployee($event)">
-                Search
-              </button> -->
+              
             </div>
           </div>
 
-          <!-- Search Bar Here -->
 
 
           <table class="table table-hover">
@@ -66,13 +152,13 @@
                 <td>{{emp.SiteName}}</td>
                 <td>{{emp.employee_type_name}}</td>
                 <td>
-                    <select class="form-control"  name="workSite1">
-                        <option *ngFor="let allocationSite of workSites"  [value]="allocationSite.SiteId">{{allocationSite.SiteName}}</option>
+                    <select class="form-control" (change)="saveAllocation(emp)" [(ngModel)]="modelData[emp.EmployeeID]" name="workSite1">
+                        <option *ngFor="let allocationSite of tempWorksite"   [value]="allocationSite.SiteId">{{allocationSite.SiteName}}</option>
                       </select>
 
                 </td>
                 <td>
-                  <button class="btn btn-link"  data-toggle="modal" data-target="#exampleModal">
+                  <button class="btn btn-link" (click)="removeAllocation(emp)" data-toggle="modal" data-target="#exampleModal">
                     <i class="material-icons">remove_circle</i>
                   </button>
                 </td>
@@ -86,4 +172,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

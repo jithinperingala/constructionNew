@@ -5,11 +5,13 @@ import { LandingpageRoutingModule } from './landingpage-routing.module';
 import { LandingpageComponent } from './landingpage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { MeterialModule } from 'src/app/shared/modules/meterial/meterial.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    LandingpageRoutingModule
+    LandingpageRoutingModule,
+    MeterialModule
   ],
   declarations: [LandingpageComponent   , NavbarComponent,
     FooterComponent,]

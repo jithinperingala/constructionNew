@@ -19,11 +19,17 @@ export class Pathgenerator {
             createUpdateEmployeeType:'employee/createUpdateEmployeeType',
             DeleteEmployeeType: 'employee/deleteEmployeeType',
 
+
+            saveEmployeeAttendence: 'employee/attendence',
+            
+
             validateUser:"validateUser/login",
 
             getSiteDetails:"site/getSiteDetails",
             getallocatedEmployes:"site/getallocatedEmployes",
-
+            saveallocatedEmployes:"site/saveallocatedEmployes",
+            removeallocatedEmployes:"site/removeallocatedEmployes",
+            
             EmployeePayment:"employee/payment",
             EmployeePaymentReport:"employee/paymentReport"
         }
@@ -75,10 +81,20 @@ export class Pathgenerator {
     get getSiteDetails(){
         return this.generatePath(this.uriCollection.getSiteDetails)
     }
+    get saveallocatedEmployes(){
+        return this.generatePath(this.uriCollection.saveallocatedEmployes)
+    }
+    get removeallocatedEmployes(){
+        return this.generatePath(this.uriCollection.removeallocatedEmployes)
+    }
     get employeePaymentReport(){
         return this.generatePath(this.uriCollection.EmployeePaymentReport)
     }
     get getallocatedEmployes(){
         return this.generatePath(this.uriCollection.getallocatedEmployes)
     }
+    get saveEmployeeAttendence(){
+        return this.generatePath(this.uriCollection.saveEmployeeAttendence)
+    }
+    
 }

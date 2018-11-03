@@ -11,8 +11,10 @@ export class UserService {
     this.loggedUserID = userid
   }
   get loggeduser() {
-    if(this.loggedUserID)
-    return this.loggedUserID
+    
+    if(this.loggedUserID !=undefined){
+      return this.loggedUserID
+    }
     else{
       return localStorage.getItem("usedData")
     }
