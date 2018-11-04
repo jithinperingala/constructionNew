@@ -12,7 +12,7 @@ import { SessionService } from 'src/app/core/services/session/session';
 export class EmployeeService {
   employeeDetails: Array<object>
   employeeType: Array<object>
-  constructor(private http: AjaxService, private pathgen: Pathgenerator,private session:SessionService) {
+  constructor(private http: AjaxService, private pathgen: Pathgenerator, private session: SessionService) {
   }
   createEmployee(empObject) {
     return this.http._post(this.pathgen.createUpdateEmployee(), empObject)
@@ -28,17 +28,17 @@ export class EmployeeService {
     return this.http._get(this.pathgen.getEmployeeDetails() + "?key=" + key).pipe(
       tap(res => {
         //  this.employeeDetails = res[0]
-        console.log("this.employeeDetails", this.employeeDetails)
+        console.log("this.employeeDetails edit", res[0][0])
       })
     )
-      .pipe(map(res => {if (res && res[0])res[0][0]}))
+      .pipe(map(res => { if (res && res[0]) return res[0][0] }))
   }
 
   getEmployeeByemployeeType(key, emptype) {
     console.log("Service key", key)
     if (!key) { key = " " }
     else { key = key.trim() }
-    return this.http._get(this.pathgen.getAllEmployeebyId() + "?key=" + key + "&emptype=" + emptype+ "&userID=" + this.session.userInfo['FkEmployee']).pipe(
+    return this.http._get(this.pathgen.getAllEmployeebyId() + "?key=" + key + "&emptype=" + emptype + "&userID=" + this.session.userInfo['FkEmployee']).pipe(
       tap(res => {
         this.employeeDetails = res[0]
         console.log("this.employeeDetails", this.employeeDetails)
@@ -134,22 +134,22 @@ export class EmployeeService {
     );
   }
   saveAttendence(employee) {
-    return this.http._post(this.pathgen.saveEmployeeAttendence,employee)
+    return this.http._post(this.pathgen.saveEmployeeAttendence, employee)
   }
-  getallocatedEmployes(workSite,searchKey){
-    return this.http._get(this.pathgen.getallocatedEmployes+"?siteID="+workSite+"&searchKey="+searchKey)
+  getallocatedEmployes(workSite, searchKey) {
+    return this.http._get(this.pathgen.getallocatedEmployes + "?siteID=" + workSite + "&searchKey=" + searchKey)
   }
-  removeAllocation(data){
-    return this.http._post(this.pathgen.removeallocatedEmployes,data)
+  removeAllocation(data) {
+    return this.http._post(this.pathgen.removeallocatedEmployes, data)
 
   }
-  saveAllocation(data){
+  saveAllocation(data) {
     console.log(data)
-    return this.http._post(this.pathgen.saveallocatedEmployes,data)
+    return this.http._post(this.pathgen.saveallocatedEmployes, data)
 
   }
-  getAttendence(workSite,date){
-    return this.http._get(this.pathgen.saveEmployeeAttendence+"?siteid="+workSite+"&date="+date)
+  getAttendence(workSite, date) {
+    return this.http._get(this.pathgen.saveEmployeeAttendence + "?siteid=" + workSite + "&date=" + date)
   }
 }
 

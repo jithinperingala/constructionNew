@@ -1,5 +1,7 @@
-<form [formGroup]="loginForm" (ngSubmit)="validateUser(loginForm.value)">
-    <div class="form-group">
+<!-- <form [formGroup]="loginForm" (ngSubmit)="validateUser(loginForm.value)"> -->
+
+
+  <!-- <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input type="text" formControlName="userName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -7,7 +9,55 @@
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
       <input type="password" formControlName="passCode" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div> -->
+<!-- 
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput formControlName="userName" placeholder="UserName">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="password" matInput formControlName="passCode" placeholder="Passcode">
+    </mat-form-field>
+
+    <div class="example-button-row">
+      <button type="submit" mat-raised-button color="primary">LogIn</button>
     </div>
-    
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  </div>
+
+
+</form> -->
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="loginForm" (ngSubmit)="validateUser(loginForm.value)">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput formControlName="userName" placeholder="UserName">
+
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input type="password" matInput formControlName="passCode" placeholder="Passcode">
+
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <mat-card-actions>
+          <button type="submit" mat-raised-button color="primary">LogIn</button>
+      
+        </mat-card-actions>
+    </form>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card-content>
+  
+</mat-card>

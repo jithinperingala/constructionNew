@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, OnChanges } from '@angular/core';
-import { OuterSubscriber } from 'rxjs/internal/OuterSubscriber';
-import { OutputType } from '@angular/core/src/view';
+import { Component, Inject} from '@angular/core';
+import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
 @Component({
@@ -8,35 +7,12 @@ import { OutputType } from '@angular/core/src/view';
   templateUrl: './delete-popup.component.html',
   styleUrls: ['./delete-popup.component.scss']
 })
-export class DeletePopupComponent implements OnInit, OnChanges {
+export class DeletePopupComponent {
 
-  constructor() { }
-
-  @Input() showPopup
-
-  @Output() OnDelete = new EventEmitter<boolean>();
-  @Output() Onclose = new EventEmitter<boolean>();
-  
-  ngOnInit() {
-  
-  }
-  ngOnChanges() {
-    console.log(this.showPopup)
-    if (this.showPopup) {
-      
+  constructor(public dialogRef: MatDialogRef<DeletePopupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data) { }
+    onNoClick(): void {
+      this.dialogRef.close();
     }
-    else{
-      
-    }
-
-
-
-  }
-  closePopup() {
-    this.Onclose.emit(true)
-  }
-
-  toDelete() {
-    this.OnDelete.emit(true)
-  }
+  
 }

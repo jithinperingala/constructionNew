@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
      private router:Router,
      private sessionService:SessionService) { }
   loginForm: FormGroup;
+  showSpinner
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       userName: ['', Validators.required],
@@ -28,17 +29,21 @@ export class LoginComponent implements OnInit {
   }
 
   validateUser(loginData) {
+    this.showSpinner=true
     this.loginService.validateUser(loginData).subscribe(
       result => {
         if (result) {
           console.log(result)
           this.sessionService.userInfo=result[0][0]
+          this.showSpinner=false
           this.router.navigate(['dashbord/employee'])
         } else {
+          this.showSpinner=false
           this.notifyservice._loginFailed()
         }
       },
       err=>{
+        this.showSpinner=false
         this.notifyservice._loginFailed()
       }
     )

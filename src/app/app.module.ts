@@ -9,16 +9,20 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './modules/login/login.component';
 import { NotificationModule } from './core/services/notification/notification.module';
+import { DeletePopupComponent } from './shared/components/delete-popup/delete-popup.component';
+import { MeterialModule } from './shared/modules/meterial/meterial.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    DeletePopupComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule,
-    NotificationModule,HttpClientModule, AppRoutingModule,ModalModule.forRoot()
+    NotificationModule,HttpClientModule, AppRoutingModule,ModalModule.forRoot(),MeterialModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[DeletePopupComponent]
 })
 export class AppModule { }

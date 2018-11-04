@@ -46,9 +46,17 @@ export class EmployeeAttendenceComponent implements OnInit {
     this.employeeService.getAttendence(this.workSite, this.datePipe.transform(date.value, 'yyyy-MM-dd')).subscribe(
       res => {
        let tempAttentence={}
+      
         Object.assign(tempAttentence, _.pluck(res[0],'employee_id'));
+      
        this.attendence= _.invert(tempAttentence);
+       _.map(this.attendence,(data,key)=>{
+        
+        data=true
+        console.log("res[data]",this.attendence)
+      })
         console.log("getAttendence",this.attendence)
+        
       }
     )
   }
@@ -61,8 +69,7 @@ export class EmployeeAttendenceComponent implements OnInit {
   }
 
   saveAttendence(data) {
-
-    console.log(this.attendence[data.EmployeeCode])
+console.log(this.attendence)
     data.date = this.datePipe.transform(this.serializedDate.value, 'yyyy-MM-dd')
     data.status = this.attendence[data.EmployeeID] == true ? 1 : 0
     data.siteId = this.workSite

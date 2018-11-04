@@ -3,8 +3,9 @@ import { EmployeeService } from 'src/app/modules/employee/shared/employee.servic
 import * as _ from 'underscore'
 import { SessionService } from 'src/app/core/services/session/session';
 import { FormControl } from '@angular/forms';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { DatePipe } from '@angular/common';
+import { DeletePopupComponent } from 'src/app/shared/components/delete-popup/delete-popup.component';
 @Component({
   selector: 'app-employee-allocation',
   templateUrl: './employee-allocation.component.html',
@@ -24,9 +25,27 @@ export class EmployeeAllocationComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService,
     private session: SessionService,
-    private datePipe: DatePipe
-  ) { }
+    private datePipe: DatePipe,
+    public dialog: MatDialog) { }
   @ViewChild(MatSort) sort: MatSort;
+  openDialog(employee): void {
+    console.log(employee)
+    const dialogRef = this.dialog.open(DeletePopupComponent, {
+      width: '250px',
+      data: { name: employee.FirstName, id: employee.EmployeeID,process:'Remove' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.removeAllocation(employee)
+        console.log(result);
+      }
+      
+    });
+  }
+  DeleteEmployee(result: any): any {
+    throw new Error("Method not implemented.");
+  }
   ngOnInit() {
     //Get site Details
     //get employee based on site
