@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
           console.log(result)
           this.sessionService.userInfo=result[0][0]
           this.showSpinner=false
-          this.router.navigate(['dashbord/employee'])
+          this.router.navigate(['/dashbord/employee/search'])
         } else {
           this.showSpinner=false
           this.notifyservice._loginFailed()

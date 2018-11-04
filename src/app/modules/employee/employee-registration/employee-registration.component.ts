@@ -202,7 +202,7 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
         this.upload('insurance', data.employee_id)
         this.uploadImg(data.employee_id)
         this.NotifyService._sucessMessage()
-        this.navigate._navigate('dashbord')
+        this.navigate._navigate('/dashbord/employee/search')
       })
     }
     else {
