@@ -18,11 +18,11 @@ export class EmployeeAttendenceComponent implements OnInit {
   attendence = {}
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
-  displayedColumns: string[] = ['EmployeeCode', 'FirstName', 'employee_type_name','Mark'];
+  displayedColumns: string[] = ['EmployeeCode', 'FirstName', 'employee_type_name', 'Mark'];
   constructor(private employeeService: EmployeeService,
     private datePipe: DatePipe,
     private sessionservice: SessionService,
-    private notifi:NotifierService) {
+    private notifi: NotifierService) {
   }
 
   ngOnInit() {
@@ -41,22 +41,36 @@ export class EmployeeAttendenceComponent implements OnInit {
 
   }
   getAttendencebyDate(date) {
-    this.serializedDate=date
-    this.attendence={}
+    this.serializedDate = date
+    this.attendence = {}
     this.employeeService.getAttendence(this.workSite, this.datePipe.transform(date.value, 'yyyy-MM-dd')).subscribe(
       res => {
-       let tempAttentence={}
-      
-        Object.assign(tempAttentence, _.pluck(res[0],'employee_id'));
-      
-       this.attendence= _.invert(tempAttentence);
-       _.map(this.attendence,(data,key)=>{
-        
-        data=true
-        console.log("res[data]",this.attendence)
-      })
-        console.log("getAttendence",this.attendence)
-        
+
+        _.map(this.searchdata, (data, key) => {
+          let a = _.find(res[0], function (result) { return result.employee_id == data.EmployeeID });
+          if (a) {
+            this.searchdata[key].status = true
+            console.log("res[data]", a)
+          }
+          else {
+            this.searchdata[key].status = false
+          }
+
+        })
+        console.log("getAttendence", res)
+
+        // let tempAttentence = {}
+
+        // Object.assign(tempAttentence, _.pluck(res[0], 'employee_id'));
+
+        // this.attendence = _.invert(tempAttentence);
+        // _.map(tempAttentence, (data, key) => {
+
+        //   data = true
+        //   console.log("res[data]", this.attendence)
+        // })
+        // console.log("getAttendence", this.attendence)
+
       }
     )
   }
@@ -69,7 +83,7 @@ export class EmployeeAttendenceComponent implements OnInit {
   }
 
   saveAttendence(data) {
-console.log(this.attendence)
+    console.log(this.attendence)
     data.date = this.datePipe.transform(this.serializedDate.value, 'yyyy-MM-dd')
     data.status = this.attendence[data.EmployeeID] == true ? 1 : 0
     data.siteId = this.workSite
