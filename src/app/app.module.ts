@@ -11,7 +11,7 @@ import { LoginComponent } from './modules/login/login.component';
 import { NotificationModule } from './core/services/notification/notification.module';
 import { DeletePopupComponent } from './shared/components/delete-popup/delete-popup.component';
 import { MeterialModule } from './shared/modules/meterial/meterial.module';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +20,7 @@ import { MeterialModule } from './shared/modules/meterial/meterial.module';
   ],
   imports: [
     BrowserModule, AppRoutingModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule,
-    NotificationModule,HttpClientModule, AppRoutingModule,ModalModule.forRoot(),MeterialModule
+    NotificationModule,HttpClientModule, AppRoutingModule,ModalModule.forRoot(),MeterialModule,NgxSpinnerModule
   ],
   bootstrap: [AppComponent],
   entryComponents:[DeletePopupComponent]

@@ -31,11 +31,7 @@ export class EmployeeAttendenceComponent implements OnInit {
 
       this.workSites = res[0]
       this.workSite = 1
-      this.employeeService.getallocatedEmployes(this.workSite, " ").subscribe(res => {
-        this.searchdata = res[0]
-        console.log("app-emp-reg", this.searchdata)
-        this.getAttendencebyDate(this.serializedDate)
-      })
+      this.getAttendencebyDate(this.serializedDate)
     })
 
 
@@ -45,53 +41,34 @@ export class EmployeeAttendenceComponent implements OnInit {
     this.attendence = {}
     this.employeeService.getAttendence(this.workSite, this.datePipe.transform(date.value, 'yyyy-MM-dd')).subscribe(
       res => {
-
-        _.map(this.searchdata, (data, key) => {
-          let a = _.find(res[0], function (result) { return result.employee_id == data.EmployeeID });
-          if (a) {
-            this.searchdata[key].status = true
-            console.log("res[data]", a)
-          }
-          else {
-            this.searchdata[key].status = false
-          }
-
-        })
-        console.log("getAttendence", res)
-
-        // let tempAttentence = {}
-
-        // Object.assign(tempAttentence, _.pluck(res[0], 'employee_id'));
-
-        // this.attendence = _.invert(tempAttentence);
-        // _.map(tempAttentence, (data, key) => {
-
-        //   data = true
-        //   console.log("res[data]", this.attendence)
-        // })
-        // console.log("getAttendence", this.attendence)
-
+        this.searchdata = res[0]
+        console.log("res[data]", res[0])
       }
     )
   }
-  selectEmployeesBySite() {
-    this.employeeService.getallocatedEmployes(this.workSite, " ").subscribe(res => {
-      this.searchdata = res[0]
-      console.log("app-emp-reg", this.searchdata)
-      this.getAttendencebyDate(this.serializedDate)
-    })
-  }
+  // selectEmployeesBySite() {
+  //   this.employeeService.getallocatedEmployes(this.workSite, " ").subscribe(res => {
+  //     this.searchdata = res[0]
+  //     console.log("app-emp-reg", this.searchdata)
+  //     this.getAttendencebyDate(this.serializedDate)
+  //   })
+  // }
 
-  saveAttendence(data) {
-    console.log(this.attendence)
-    data.date = this.datePipe.transform(this.serializedDate.value, 'yyyy-MM-dd')
-    data.status = this.attendence[data.EmployeeID] == true ? 1 : 0
-    data.siteId = this.workSite
-    data.userId = this.sessionservice.userInfo['FkEmployee']
-    console.log(data)
-    this.employeeService.saveAttendence(data).subscribe(
+  saveAttendence(Attendencedata) {
+    console.log("datadata", Attendencedata)
+    Attendencedata.date = this.datePipe.transform(this.serializedDate.value, 'yyyy-MM-dd')
+    Attendencedata.status = 1
+    Attendencedata.siteId = this.workSite
+    Attendencedata.userId = this.sessionservice.userInfo['FkEmployee']
+    Attendencedata.EmployeeID = Attendencedata.Fk_Employee
+    console.log(Attendencedata)
+    this.employeeService.saveAttendence(Attendencedata).subscribe(
       res => {
-        console.log(res)
+
+       let data=[1]
+        let t=_.lastIndexOf(this.searchdata, Attendencedata)
+        this.searchdata[t].Status={data:[1]}
+        console.log("_.lastIndexOf(this.searchdata, data)",  this.searchdata)
         this.notifi.show;
       }
     )

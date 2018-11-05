@@ -13,7 +13,7 @@
         <mat-form-field class="example-full-width">
 
 
-            <mat-select name="workSite" (change)="selectEmployeesBySite()" placeholder="Select a Site" [(ngModel)]="workSite">
+            <mat-select name="workSite"  placeholder="Select a Site" [(ngModel)]="workSite" (selectionChange)="getAttendencebyDate(serializedDate)">
                 <mat-option *ngFor="let site of workSites" [value]="site.SiteId">
                     {{site.SiteName}}
                 </mat-option>
@@ -37,13 +37,13 @@
             <!-- Name Column -->
             <ng-container matColumnDef="FirstName">
                 <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.EmployeeName}} </td>
             </ng-container>
 
             <!-- Weight Column -->
             <ng-container matColumnDef="employee_type_name">
                 <th mat-header-cell *matHeaderCellDef> Type </th>
-                <td mat-cell *matCellDef="let element"> {{element.employee_type_name}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.EmployeeName}} </td>
             </ng-container>
             <ng-container matColumnDef="Mark">
                 <th mat-header-cell *matHeaderCellDef>
@@ -53,8 +53,9 @@
                     <mat-datepicker #picker1></mat-datepicker>
                 </th>
                 <td mat-cell *matCellDef="let element">
-                    <mat-checkbox name="attendence[element.EmployeeID]" [checked]="element.status" (change)="saveAttendence(element)"
-                        [(ngModel)]="attendence[element.EmployeeID]"></mat-checkbox>
+                    <!-- <mat-checkbox  name="attendence" [checked]="true" (change)="saveAttendence(element)"
+                    [(ngModel)]="attendence[element.Fk_Employee]"></mat-checkbox> -->
+                    <mat-checkbox name="attendence" [checked]="element.Status && element.Status.data&& element.Status.data[0]==1" [disabled]="element.Status && element.Status.data&& element.Status.data[0]==1" (change)="saveAttendence(element)"></mat-checkbox>
 
                 </td>
             </ng-container>
