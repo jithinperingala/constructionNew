@@ -5,6 +5,7 @@ import { LoginService } from './shared/login.service';
 import { NotifyService } from '../../core/services/notification/notify.service';
 import{Router}from'@angular/router'
 import { SessionService } from 'src/app/core/services/session/session';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +18,9 @@ export class LoginComponent implements OnInit {
      private loginService: LoginService, 
      private notifyservice: NotifyService,
      private router:Router,
-     private sessionService:SessionService) { }
+     private sessionService:SessionService,
+     private spinner: NgxSpinnerService) { }
   loginForm: FormGroup;
-  showSpinner
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       userName: ['', Validators.required],
@@ -29,21 +30,17 @@ export class LoginComponent implements OnInit {
   }
 
   validateUser(loginData) {
-    this.showSpinner=true
     this.loginService.validateUser(loginData).subscribe(
       result => {
         if (result) {
-          console.log(result)
           this.sessionService.userInfo=result[0][0]
-          this.showSpinner=false
+          this.spinner.show()
           this.router.navigate(['/dashbord/employee/search'])
         } else {
-          this.showSpinner=false
           this.notifyservice._loginFailed()
         }
       },
       err=>{
-        this.showSpinner=false
         this.notifyservice._loginFailed()
       }
     )

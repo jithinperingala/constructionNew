@@ -60,7 +60,7 @@
           Allocate site
         </th>
         <td mat-cell *matCellDef="let element">
-            <mat-select name="workSite1" (selectionChange)="saveAllocation(element)" placeholder="Select a Site"  [(ngModel)]="modelData[element.EmployeeID]">
+            <mat-select name="workSite1" (selectionChange)="saveAllocation(element,$event)" placeholder="Select a Site"  >
                 <mat-option *ngFor="let allocationSite of tempWorksite" [value]="allocationSite.SiteId">
                   {{allocationSite.SiteName}}
                 </mat-option>

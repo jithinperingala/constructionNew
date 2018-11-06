@@ -17,8 +17,8 @@ export class EmployeeAllocationComponent implements OnInit {
   searchdata
   workSite
   searchKey
-  tempWorksite
-  modelData = {}
+  tempWorksite=[]
+
   date = new FormControl(new Date());
   displayedColumns: string[] = ['EmployeeCode', 'FirstName', 'employee_type_name', 'allocateTo', 'removeAllocation'];
   serializedDate = new FormControl((new Date()).toISOString());
@@ -52,19 +52,20 @@ export class EmployeeAllocationComponent implements OnInit {
     this.employeeService.getSiteDetails().subscribe(res => {
       console.log("app-emp-reg", res)
       if (res) {
-        this.tempWorksite = JSON.parse(JSON.stringify(res[0]))
+        Object.assign(this.tempWorksite, res[0])
         this.workSites = res[0]
         this.workSites.push({ SiteId: 0, SiteName: "Unallocated" })
         this.workSite = 1
         this.getallocatedEmployee()
+        this.setAllocationSite()
       }
 
     })
   }
-  saveAllocation(employee) {
-    console.log("employee", employee)
+  saveAllocation(employee,eve) {
+    console.log("employee", eve.value)
     let dataToSend = {
-      selectedSite: this.modelData[employee.EmployeeID],
+      selectedSite: eve.value,
       employeeID: employee.EmployeeID,
       allocatedDate: this.datePipe.transform(this.serializedDate.value, 'yyyy-MM-dd'),
       userId: this.session.userInfo['FkEmployee']
@@ -88,7 +89,14 @@ export class EmployeeAllocationComponent implements OnInit {
     });
   }
   //allocate employee
+  setAllocationSite(){
+    let self=this
+    Object.assign(this.tempWorksite, this.workSites)
+    this.tempWorksite=_.reject(this.tempWorksite, function(site){ return site.SiteId ==self.workSite || site.SiteId== 0; })
+       
+  }
   getallocatedEmployee() {
+    this.setAllocationSite()
     this.searchKey = this.searchKey ? this.searchKey : ' '
     this.employeeService.getallocatedEmployes(this.workSite, this.searchKey).subscribe(res => {
       if (res != null)
