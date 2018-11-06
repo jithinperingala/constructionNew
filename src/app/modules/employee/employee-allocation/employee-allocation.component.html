@@ -55,16 +55,19 @@
       </ng-container>
 
 
-      <ng-container matColumnDef="allocateTo">
+      <ng-container matColumnDef="allocateTo" >
         <th mat-header-cell *matHeaderCellDef>
           Allocate site
         </th>
         <td mat-cell *matCellDef="let element">
-            <mat-select name="workSite1" (selectionChange)="saveAllocation(element,$event)" placeholder="Select a Site"  >
+            <mat-select *ngIf="this.tempWorksite.length>0 else elsemessage" name="workSite1" (selectionChange)="saveAllocation(element,$event)" placeholder="Select a Site"  >
                 <mat-option *ngFor="let allocationSite of tempWorksite" [value]="allocationSite.SiteId">
                   {{allocationSite.SiteName}}
                 </mat-option>
               </mat-select>
+              <ng-template #elsemessage>
+                Nothing to select
+              </ng-template>
         </td>
       </ng-container>
 
