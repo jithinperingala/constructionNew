@@ -46,13 +46,6 @@ export class EmployeeAttendenceComponent implements OnInit {
       }
     )
   }
-  // selectEmployeesBySite() {
-  //   this.employeeService.getallocatedEmployes(this.workSite, " ").subscribe(res => {
-  //     this.searchdata = res[0]
-  //     console.log("app-emp-reg", this.searchdata)
-  //     this.getAttendencebyDate(this.serializedDate)
-  //   })
-  // }
 
   saveAttendence(Attendencedata) {
     console.log("datadata", Attendencedata)

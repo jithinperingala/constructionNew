@@ -12,11 +12,13 @@ import { NotificationModule } from './core/services/notification/notification.mo
 import { DeletePopupComponent } from './shared/components/delete-popup/delete-popup.component';
 import { MeterialModule } from './shared/modules/meterial/meterial.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ReportsComponent } from './modules/reports/reports.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DeletePopupComponent
+    DeletePopupComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule,

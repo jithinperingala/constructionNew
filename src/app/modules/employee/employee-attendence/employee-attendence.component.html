@@ -1,19 +1,19 @@
-<div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-body">
-                <h3 class="card-title">Attendence</h3>
+<mat-card>
+        <mat-card-header>
+            <mat-card-title>Attendence</mat-card-title>
+            <mat-card-subtitle>
                 <p class="page-dir"> <i class="material-icons">home</i>Home / Attendence</p>
-            </div>
-        </div>
-    </div>
-</div>
+            </mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+    <mat-divider></mat-divider>
+<mat-card class="contentMargin">
 <form class="example-form">
     <div class="example-container">
         <mat-form-field class="example-full-width">
 
 
-            <mat-select name="workSite"  placeholder="Select a Site" [(ngModel)]="workSite" (selectionChange)="getAttendencebyDate(serializedDate)">
+            <mat-select name="workSite" placeholder="Select a Site" [(ngModel)]="workSite" (selectionChange)="getAttendencebyDate(serializedDate)">
                 <mat-option *ngFor="let site of workSites" [value]="site.SiteId">
                     {{site.SiteName}}
                 </mat-option>
@@ -53,9 +53,8 @@
                     <mat-datepicker #picker1></mat-datepicker>
                 </th>
                 <td mat-cell *matCellDef="let element">
-                    <!-- <mat-checkbox  name="attendence" [checked]="true" (change)="saveAttendence(element)"
-                    [(ngModel)]="attendence[element.Fk_Employee]"></mat-checkbox> -->
-                    <mat-checkbox name="attendence" [checked]="element.Status && element.Status.data&& element.Status.data[0]==1" [disabled]="element.Status && element.Status.data&& element.Status.data[0]==1" (change)="saveAttendence(element)"></mat-checkbox>
+                    <mat-checkbox name="attendence" [checked]="element.Status && element.Status.data&& element.Status.data[0]==1"
+                        [disabled]="element.Status && element.Status.data&& element.Status.data[0]==1" (change)="saveAttendence(element)"></mat-checkbox>
 
                 </td>
             </ng-container>
@@ -65,42 +64,4 @@
 
     </div>
 </form>
-<!-- <table class="table table-hover table-responsive-md mb-0">
-
-   
-    <thead>
-        <tr>
-            <th scope="row">Code</th>
-            <th class="th-lg">Name</th>
-            <th class="th-lg">Type</th>
-            <th>
-
-                <input matInput [matDatepicker]="picker1" placeholder="Date" (dateChange)="getAttendencebyDate($event)"
-                    [formControl]="date">
-                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker>
-
-            </th>
-
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-   
-    <tbody>
-        <tr *ngFor="let emp of searchdata">
-            <th scope="row">{{emp.EmployeeCode}}</th>
-            <td>{{emp.FirstName}}</td>
-            <td>{{emp.employee_type_name}}</td>
-
-            <td>
-                <input [disabled]="attendence[emp.EmployeeID]" type="checkbox" [(ngModel)]="attendence[emp.EmployeeID]"
-                    (change)="saveAttendence(emp)">
-            </td>
-
-
-        </tr>
-
-    </tbody>
-    
-</table> -->
+</mat-card>
