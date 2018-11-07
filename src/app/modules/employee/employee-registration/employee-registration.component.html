@@ -187,7 +187,7 @@
 
                       <button type="submit" [disabled]="cardForm.invalid" [ngClass]="{'pointer': isFormValid==true, 
                       'not-allowed' : isFormValid==false }" class="btn btn-primary" >Save</button>&nbsp;&nbsp; 
-                      <button type="button" (click)="cardForm.reset()" class="btn btn-danger">Reset</button>
+                      <button type="button" (click)="cardForm.reset();clearFiles()" class="btn btn-danger">Reset</button>
 
                     
                   </div>

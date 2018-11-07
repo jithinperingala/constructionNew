@@ -14,12 +14,12 @@ export class EmployeeService {
   employeeType: Array<object>
   constructor(private http: AjaxService, private pathgen: Pathgenerator, private session: SessionService) {
   }
-  createEmployee(empObject) {
+  createUpdateEmployee(empObject) {
     return this.http._post(this.pathgen.createUpdateEmployee(), empObject)
   }
-  updateEmployee(empObject) {
-    return this.http._post(this.pathgen.createUpdateEmployee(), empObject)
-  }
+  // updateEmployee(empObject) {
+  //   return this.http._post(this.pathgen.createUpdateEmployee(), empObject)
+  // }
 
   getEmployeeBysearchKey(key) {
     console.log("Service key", key)

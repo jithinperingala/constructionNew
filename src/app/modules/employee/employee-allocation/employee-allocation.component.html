@@ -30,7 +30,7 @@
       <input matInput (input)="getallocatedEmployee()" [(ngModel)]="searchKey" name="Search" placeholder="Search">
     </mat-form-field>
 
-
+    <div class="example-container mat-elevation-z8">
     <table mat-table [dataSource]="searchdata" matSort class="mat-elevation-z8">
 
       <!--- Note that these columns can be defined in any order.
@@ -84,7 +84,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
+</div>
   </div>
 </form>
 </mat-card>

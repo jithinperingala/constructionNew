@@ -97,7 +97,7 @@ export class EmployeeAllocationComponent implements OnInit {
   }
   getallocatedEmployee() {
     this.setAllocationSite()
-    this.searchKey = this.searchKey ? this.searchKey : ' '
+    this.searchKey = this.searchKey ? this.searchKey : ''
     this.employeeService.getallocatedEmployes(this.workSite, this.searchKey).subscribe(res => {
       if (res != null)
         this.searchdata = new MatTableDataSource(res[0])

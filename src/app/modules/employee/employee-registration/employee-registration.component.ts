@@ -190,12 +190,12 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
       this.EmployeeService.saveBlob(this.captures[0], empid)
   }
   SaveData(data) {
-    console.log(data)
+    console.log("this.searchId",this.searchId)
     if (this.searchId) {
       data.employee_id = this.searchId
       data.createUpdate = "1"
 
-      this.EmployeeService.createEmployee(data).subscribe(res => {
+      this.EmployeeService.createUpdateEmployee(data).subscribe(res => {
         //  this.upload('canvas', data.employee_id);
         this.upload('photo', data.employee_id);
         this.upload('aadar', data.employee_id)
@@ -207,19 +207,36 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
     }
     else {
       data.createUpdate = "0"
-     this.EmployeeService.updateEmployee(data).subscribe(res => {
-        console.log("jijijji", res[0][0]['employeeId'])
+     this.EmployeeService.createUpdateEmployee(data).subscribe(res => {
+        console.log("else entered", )
         // this.upload('canvas', res[0][0]['employeeId']);
-        this.uploadImg(res[0][0]['employeeId'])
-        this.upload('photo', res[0][0]['employeeId']);
-        this.upload('aadar', res[0][0]['employeeId'])
-        this.upload('insurance', res[0][0]['employeeId'])
-        this.NotifyService._sucessMessage()
-        // this.navigate._navigate('')
-        this.cardForm.reset()
+        if(res){
+          this.uploadImg(res[0][0]['employeeId'])
+          this.upload('photo', res[0][0]['employeeId']);
+          this.upload('aadar', res[0][0]['employeeId'])
+          this.upload('insurance', res[0][0]['employeeId'])
+          this.NotifyService._sucessMessage()
+          // this.navigate._navigate('')
+          this.cardForm.reset()
+          this.clearFiles()
+        }
+     
       })
       
     }
+  }
+  clearFiles(){
+    this.captures=[]
+    this.cardForm.controls.gender.setValue("0")
+    this.cardForm.controls.wagesType.setValue(0)
+    this.cardForm.controls.empType.setValue(1)
+    this.cardForm.controls.salaryAmount.setValue(0)
+    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
+    inputEl.value = null
+    let inputE2: HTMLInputElement = this.el.nativeElement.querySelector('#aadar');
+    inputE2.value = null
+    let inputE3: HTMLInputElement = this.el.nativeElement.querySelector('#insurance');
+    inputE3.value = null
   }
   ngOnDestroy(){
     navigator.mediaDevices.getUserMedia({
