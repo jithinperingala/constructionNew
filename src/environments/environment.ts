@@ -1,8 +1,9 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
+import{config} from 'src/app/configs/app-settings.config'
 export const environment = {
+  getBaseUrl:config._devbaseURL,
   production: false
 };
 

@@ -1,5 +1,6 @@
-import { config } from 'src/app/configs/app-settings.config'
+
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 @Injectable({
     providedIn: 'root'
 })
@@ -35,7 +36,7 @@ export class Pathgenerator {
         }
 
     private generatePath(uri): string {
-        return config._baseURL + uri
+        return environment.getBaseUrl + uri
     }
     uploadEmployeeImage(){
         return this.generatePath(this.uriCollection.uploadEmployeeImage)
