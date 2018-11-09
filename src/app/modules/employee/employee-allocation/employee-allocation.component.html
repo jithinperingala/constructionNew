@@ -1,66 +1,68 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>Site Allocation</mat-card-title>
-    <mat-card-subtitle>  <p class="page-dir"> <i class="material-icons">home</i>Home / Site Allocation</p>
+    <mat-card-subtitle>
+      <p class="page-dir"> <i class="material-icons">home</i>Home / Site Allocation</p>
     </mat-card-subtitle>
   </mat-card-header>
 </mat-card>
 <mat-divider></mat-divider>
 <mat-card class="contentMargin">
-<form class="example-form">
-  <div class="example-container">
-    <mat-form-field class="example-full-width">
+  <form class="example-form">
+    <div class="example-container">
+      <mat-form-field class="example-full-width">
 
-      <input matInput name="picker" [matDatepicker]="picker" placeholder="Choose a date" [formControl]="date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+        <input matInput name="picker" [matDatepicker]="picker" placeholder="Choose a date" [formControl]="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <mat-select name="workSite" (selectionChange)="getallocatedEmployee()" placeholder="Select a Site" [(ngModel)]="workSite">
-        <mat-option *ngFor="let site of workSites" [value]="site.SiteId">
-          {{site.SiteName}}
-        </mat-option>
-      </mat-select>
+      <mat-form-field class="example-full-width">
+        <mat-select name="workSite" (selectionChange)="getallocatedEmployee()" placeholder="Select a Site" [(ngModel)]="workSite">
+          <mat-option *ngFor="let site of workSites" [value]="site.SiteId">
+            {{site.SiteName}}
+          </mat-option>
+        </mat-select>
 
 
-    </mat-form-field>
+      </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <input matInput (input)="getallocatedEmployee()" [(ngModel)]="searchKey" name="Search" placeholder="Search">
-    </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput (input)="getallocatedEmployee()" [(ngModel)]="searchKey" name="Search" placeholder="Search">
+      </mat-form-field>
 
-    <div class="example-container mat-elevation-z8">
-    <table mat-table [dataSource]="searchdata" matSort class="mat-elevation-z8">
+      <div class="example-container mat-elevation-z8">
+        <table mat-table [dataSource]="searchdata" matSort>
 
-      <!--- Note that these columns can be defined in any order.
+          <!--- Note that these columns can be defined in any order.
                           The actual rendered columns are set as a property on the row definition" -->
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="EmployeeCode">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Employee code </th>
-        <td mat-cell *matCellDef="let element"> {{element.EmployeeCode}} </td>
-      </ng-container>
+          <!-- Position Column -->
+          <ng-container matColumnDef="EmployeeCode">
+            <mat-header-cell mat-sort-header *matHeaderCellDef> Employee code </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="EmployeeCode"> {{row.EmployeeCode}} </mat-cell>
+          </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="FirstName">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
-      </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="FirstName">
+            <mat-header-cell mat-sort-header *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="FirstName"> {{row.FirstName}} </mat-cell>
+          </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="employee_type_name">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Type </th>
-        <td mat-cell *matCellDef="let element"> {{element.employee_type_name}} </td>
-      </ng-container>
+          <!-- Weight Column -->
+          <ng-container matColumnDef="employee_type_name">
+            <mat-header-cell mat-sort-header *matHeaderCellDef> Type </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="employee_type_name"> {{row.employee_type_name}} </mat-cell>
+          </ng-container>
 
 
-      <ng-container matColumnDef="allocateTo" >
-        <th mat-header-cell *matHeaderCellDef>
-          Allocate site
-        </th>
-        <td mat-cell *matCellDef="let element">
-            <mat-select *ngIf="this.tempWorksite.length>0 else elsemessage" name="workSite1" (selectionChange)="saveAllocation(element,$event)" placeholder="Select a Site"  >
+          <ng-container matColumnDef="allocateTo">
+            <mat-header-cell *matHeaderCellDef>
+              Allocate site
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="SiteName">
+              <mat-select *ngIf="this.tempWorksite.length>0 else elsemessage" name="workSite1" (selectionChange)="saveAllocation(row,$event)"
+                placeholder="Select a Site">
                 <mat-option *ngFor="let allocationSite of tempWorksite" [value]="allocationSite.SiteId">
                   {{allocationSite.SiteName}}
                 </mat-option>
@@ -68,23 +70,23 @@
               <ng-template #elsemessage>
                 Nothing to select
               </ng-template>
-        </td>
-      </ng-container>
+            </mat-cell>
+          </ng-container>
 
-      <ng-container  matColumnDef="removeAllocation">
-          <th mat-header-cell *matHeaderCellDef>
-            <label *ngIf="workSite !=0"> Remove</label>
-             
-          </th>
-          <td  mat-cell *matCellDef="let element">
-              <button *ngIf="workSite !=0" mat-raised-button (click)="openDialog(element)" color="warn">Remove</button>
-              <!-- <button *ngIf="workSite !=0" mat-raised-button (click)="removeAllocation(element)" color="warn">Remove</button> -->
-          </td>
-        </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-</div>
-  </div>
-</form>
+          <ng-container matColumnDef="removeAllocation">
+            <mat-header-cell *matHeaderCellDef>
+              <label *ngIf="workSite !=0"> Remove</label>
+
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let row" data-label="remove">
+              <button *ngIf="workSite !=0" mat-raised-button (click)="openDialog(row)" color="warn">Remove</button>
+              <!-- <button *ngIf="workSite !=0" mat-raised-button (click)="removeAllocation(row)" color="warn">Remove</button> -->
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </table>
+      </div>
+    </div>
+  </form>
 </mat-card>

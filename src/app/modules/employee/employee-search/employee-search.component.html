@@ -23,69 +23,72 @@
                 <input matInput (input)="getEmployee()" [(ngModel)]="searchKey" name="Search" placeholder="Search">
             </mat-form-field>
 
+            <div class="example-container mat-elevation-z8">
 
-            <table mat-table [dataSource]="searchdata" matSort class="mat-elevation-z8">
+                <table mat-table [dataSource]="searchdata" matSort>
 
-                <!--- Note that these columns can be defined in any order.
+                    <!--- Note that these columns can be defined in any order.
                                     The actual rendered columns are set as a property on the row definition" -->
 
-                <!-- Position Column -->
+                    <!-- Position Column -->
 
-                <ng-container matColumnDef="employee_code">
-                    <th mat-header-cell mat-sort-header *matHeaderCellDef> Employee code </th>
-                    <td mat-cell *matCellDef="let element" [ngClass]="{'has-error': element.insurance_number==''}">
-                        {{element.employee_code}} </td>
-                </ng-container>
+                    <ng-container matColumnDef="employee_code">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef> Employee code </mat-header-cell>
+                        <mat-cell data-label="employee_code" *matCellDef="let row" [ngClass]="{'has-error': row.insurance_number==''}">
+                            {{row.employee_code}} </mat-cell>
+                    </ng-container>
 
-                <!-- Name Column -->
-                <ng-container matColumnDef="first_name">
-                    <th mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>
-                    <td mat-cell *matCellDef="let element" [ngClass]="{'has-error': element.insurance_number==''}">
-                        {{element.first_name}} </td>
-                </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="first_name">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell data-label="first_name" *matCellDef="let row" [ngClass]="{'has-error': row.insurance_number==''}">
+                            {{row.first_name}} </mat-cell>
+                    </ng-container>
 
-                <!-- Weight Column -->
-                <ng-container matColumnDef="mobile">
-                    <th mat-header-cell *matHeaderCellDef> Mobile No </th>
-                    <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
-                </ng-container>
-                <ng-container matColumnDef="identity_card_number">
-                    <th mat-header-cell *matHeaderCellDef> ID Card </th>
-                    <td mat-cell *matCellDef="let element"> {{element.identity_card_number}} </td>
-                </ng-container>
-                <ng-container matColumnDef="insurance_number">
-                    <th mat-header-cell *matHeaderCellDef> Insurance </th>
-                    <td mat-cell *matCellDef="let element"> {{element.insurance_number}} </td>
-                </ng-container>
-                <ng-container matColumnDef="address">
-                    <th mat-header-cell *matHeaderCellDef> Address </th>
-                    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
-                </ng-container>
-                <ng-container matColumnDef="allocateTo">
-                    <th mat-header-cell *matHeaderCellDef>
-                        Edit
-                    </th>
-                    <td mat-cell *matCellDef="let element">
-                        <button mat-raised-button name="edit" (click)="editEmployee(element.employee_id)">
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="mobile">
+                        <mat-header-cell *matHeaderCellDef> Mobile No </mat-header-cell>
+                        <mat-cell data-label="mobile" *matCellDef="let row"> {{row.mobile}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="identity_card_number">
+                        <mat-header-cell *matHeaderCellDef> ID Card </mat-header-cell>
+                        <mat-cell data-label="identity_card_number" *matCellDef="let row"> {{row.identity_card_number}}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="insurance_number">
+                        <mat-header-cell *matHeaderCellDef> Insurance </mat-header-cell>
+                        <mat-cell data-label="insurance_number" *matCellDef="let row"> {{row.insurance_number}}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="address">
+                        <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+                        <mat-cell data-label="address" *matCellDef="let row"> {{row.address}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="allocateTo">
+                        <mat-header-cell *matHeaderCellDef>
                             Edit
-                        </button>
-                    </td>
-                </ng-container>
+                        </mat-header-cell>
+                        <mat-cell data-label="edit" *matCellDef="let row">
+                            <button mat-raised-button name="edit" (click)="editEmployee(row.employee_id)">
+                                Edit
+                            </button>
+                        </mat-cell>
+                    </ng-container>
 
-                <ng-container matColumnDef="removeAllocation">
-                    <th mat-header-cell *matHeaderCellDef>
-                        Remove
+                    <ng-container matColumnDef="removeAllocation">
+                        <mat-header-cell *matHeaderCellDef>
+                            Remove
 
-                    </th>
-                    <td mat-cell *matCellDef="let element">
+                        </mat-header-cell>
+                        <mat-cell data-label="remove" *matCellDef="let row">
 
-                        <button mat-raised-button (click)="openDialog(element)" color="warn">Remove</button>
-                    </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-
+                            <button mat-raised-button (click)="openDialog(row)" color="warn">Remove</button>
+                        </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </table>
+            </div>
         </div>
     </form>
 </mat-card>

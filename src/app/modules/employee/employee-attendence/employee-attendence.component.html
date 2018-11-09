@@ -1,67 +1,67 @@
 <mat-card>
-        <mat-card-header>
-            <mat-card-title>Attendence</mat-card-title>
-            <mat-card-subtitle>
-                <p class="page-dir"> <i class="material-icons">home</i>Home / Attendence</p>
-            </mat-card-subtitle>
-        </mat-card-header>
-    </mat-card>
-    <mat-divider></mat-divider>
+    <mat-card-header>
+        <mat-card-title>Attendence</mat-card-title>
+        <mat-card-subtitle>
+            <p class="page-dir"> <i class="material-icons">home</i>Home / Attendence</p>
+        </mat-card-subtitle>
+    </mat-card-header>
+</mat-card>
+<mat-divider></mat-divider>
 <mat-card class="contentMargin">
-<form class="example-form">
-    <div class="example-container">
-        <mat-form-field class="example-full-width">
+    <form class="example-form">
+        <div class="example-container">
+            <mat-form-field class="example-full-width">
 
 
-            <mat-select name="workSite" placeholder="Select a Site" [(ngModel)]="workSite" (selectionChange)="getAttendencebyDate(serializedDate)">
-                <mat-option *ngFor="let site of workSites" [value]="site.SiteId">
-                    {{site.SiteName}}
-                </mat-option>
-            </mat-select>
+                <mat-select name="workSite" placeholder="Select a Site" [(ngModel)]="workSite" (selectionChange)="getAttendencebyDate(serializedDate)">
+                    <mat-option *ngFor="let site of workSites" [value]="site.SiteId">
+                        {{site.SiteName}}
+                    </mat-option>
+                </mat-select>
 
 
-        </mat-form-field>
+            </mat-form-field>
+            <div class="example-container mat-elevation-z8">
 
+                <table mat-table [dataSource]="searchdata">
 
-        <table mat-table [dataSource]="searchdata" class="mat-elevation-z8">
-
-            <!--- Note that these columns can be defined in any order.
+                    <!--- Note that these columns can be defined in any order.
                           The actual rendered columns are set as a property on the row definition" -->
 
-            <!-- Position Column -->
-            <ng-container matColumnDef="EmployeeCode">
-                <th mat-header-cell *matHeaderCellDef> Employee code </th>
-                <td mat-cell *matCellDef="let element"> {{element.EmployeeCode}} </td>
-            </ng-container>
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="EmployeeCode">
+                        <mat-header-cell *matHeaderCellDef> Employee code </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="EmployeeCode"> {{row.EmployeeCode}} </mat-cell>
+                    </ng-container>
 
-            <!-- Name Column -->
-            <ng-container matColumnDef="FirstName">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.EmployeeName}} </td>
-            </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="FirstName">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="EmployeeName"> {{row.EmployeeName}} </mat-cell>
+                    </ng-container>
 
-            <!-- Weight Column -->
-            <ng-container matColumnDef="employee_type_name">
-                <th mat-header-cell *matHeaderCellDef> Type </th>
-                <td mat-cell *matCellDef="let element"> {{element.EmployeeName}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Mark">
-                <th mat-header-cell *matHeaderCellDef>
-                    <input matInput [matDatepicker]="picker1" placeholder="Date" (dateChange)="getAttendencebyDate($event)"
-                        [formControl]="date">
-                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
-                </th>
-                <td mat-cell *matCellDef="let element">
-                    <mat-checkbox name="attendence" [checked]="element.Status && element.Status.data&& element.Status.data[0]==1"
-                        [disabled]="element.Status && element.Status.data&& element.Status.data[0]==1" (change)="saveAttendence(element)"></mat-checkbox>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="employee_type_name">
+                        <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="EmployeeName1"> {{row.EmployeeName}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Mark">
+                        <mat-header-cell *matHeaderCellDef>
+                            <input matInput [matDatepicker]="picker1" placeholder="Date" (dateChange)="getAttendencebyDate($event)"
+                                [formControl]="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Status">
+                            <mat-checkbox name="attendence" [checked]="row.Status && row.Status.data&& row.Status.data[0]==1"
+                                [disabled]="row.Status && row.Status.data&& row.Status.data[0]==1" (change)="saveAttendence(row)"></mat-checkbox>
 
-                </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-
-    </div>
-</form>
+                        </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </table>
+            </div>
+        </div>
+    </form>
 </mat-card>
