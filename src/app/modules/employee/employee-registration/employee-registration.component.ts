@@ -139,6 +139,7 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
       })
     }
   }
+  video1 
   public ngAfterViewInit() {
     // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     //   navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
@@ -146,12 +147,13 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
         
     //   });
     // }
-    var video1 = document.getElementById('video');
+   let self=this
+   this.video1= document.getElementById('video');
     navigator.mediaDevices.getUserMedia({
         video: true
       })
       .then(function(stream) {
-        video1['srcObject'] = stream;
+        self.video1['srcObject'] = stream;
       
       })
       .catch(function() {
@@ -243,8 +245,7 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
       audio: false,
       video: true
     }).then(stream => {
-      // stream.stop(); // Deprecated
-      stream.getVideoTracks()[0].stop(); // Recommended
+      this.video1['srcObject'].getVideoTracks()[0].stop();
     });
   }
 }

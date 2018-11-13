@@ -21,8 +21,15 @@
 
 
             </mat-form-field>
-            <div class="example-container mat-elevation-z8">
+            <mat-form-field class="example-full-width">
 
+                <input matInput [matDatepicker]="picker1" placeholder="Date" (dateChange)="getAttendencebyDate($event)"
+                    [formControl]="date">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+
+            <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="searchdata">
 
                     <!--- Note that these columns can be defined in any order.
@@ -30,7 +37,7 @@
 
                     <!-- Position Column -->
                     <ng-container matColumnDef="EmployeeCode">
-                        <mat-header-cell *matHeaderCellDef> Employee code </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Employee code </mat-header-cell>{{row|json}}
                         <mat-cell *matCellDef="let row" data-label="EmployeeCode"> {{row.EmployeeCode}} </mat-cell>
                     </ng-container>
 
@@ -41,20 +48,80 @@
                     </ng-container>
 
                     <!-- Weight Column -->
-                    <ng-container matColumnDef="employee_type_name">
+                    <!-- <ng-container matColumnDef="employee_type_name">
                         <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="EmployeeName1"> {{row.EmployeeName}} </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
                     <ng-container matColumnDef="Mark">
                         <mat-header-cell *matHeaderCellDef>
-                            <input matInput [matDatepicker]="picker1" placeholder="Date" (dateChange)="getAttendencebyDate($event)"
-                                [formControl]="date">
-                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                            <mat-datepicker #picker1></mat-datepicker>
+                            <label [style.color]="getDay(date.value)"> {{date.value|date}}</label>
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row" data-label="Status">
-                            <mat-checkbox name="attendence" [checked]="row.Status && row.Status.data&& row.Status.data[0]==1"
-                                [disabled]="row.Status && row.Status.data&& row.Status.data[0]==1" (change)="saveAttendence(row)"></mat-checkbox>
+                        <mat-cell *matCellDef="let row" data-label="date 1">
+                            <mat-checkbox name="attendence" [checked]="getCheckedstatus(row,date.value)" [disabled]="getCheckedstatus(row,date.value)"
+                                (change)="saveAttendence(row,date.value)"></mat-checkbox>
+
+                        </mat-cell>
+                    </ng-container>
+
+                    <!--        -->
+                    <ng-container matColumnDef="Mark2">
+                        <mat-header-cell *matHeaderCellDef>
+                            <label [style.color]="getDay(date2|date)"> {{date2|date}}</label>
+
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="date 2">
+                            <mat-checkbox name="attendence" [checked]="getCheckedstatus(row,date2)" [disabled]="getCheckedstatus(row,date2)"
+                                (change)="saveAttendence(row,date2)"></mat-checkbox>
+
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Mark3">
+                        <mat-header-cell *matHeaderCellDef>
+                            <label [style.color]="getDay(date3|date)"> {{date3|date}}</label>
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="date 3">
+                            <mat-checkbox name="attendence" [checked]="getCheckedstatus(row,date3)" [disabled]="getCheckedstatus(row,date3)"
+                                (change)="saveAttendence(row,date3)"></mat-checkbox>
+
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Mark4">
+                        <mat-header-cell *matHeaderCellDef>
+                            <label [style.color]="getDay(date4|date)"> {{date4|date}}</label>
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="date 4">
+                            <mat-checkbox name="attendence" [checked]="getCheckedstatus(row,date4)" [disabled]="getCheckedstatus(row,date4)"
+                                (change)="saveAttendence(row,date4)"></mat-checkbox>
+
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Mark5">
+                        <mat-header-cell *matHeaderCellDef>
+                            <label [style.color]="getDay(date5|date)"> {{date5|date}}</label>
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="date 5">
+                            <mat-checkbox name="attendence" [checked]="getCheckedstatus(row,date5)" [disabled]="getCheckedstatus(row,date5)"
+                                (change)="saveAttendence(row,date5)"></mat-checkbox>
+
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Mark6">
+                        <mat-header-cell *matHeaderCellDef>
+                            <label [style.color]="getDay(date6|date)"> {{date6|date}}</label>
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="date 6">
+                            <mat-checkbox name="attendence" [checked]="getCheckedstatus(row,date6)" [disabled]="getCheckedstatus(row,date6)"
+                                (change)="saveAttendence(row,date6)"></mat-checkbox>
+
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Mark7">
+                        <mat-header-cell *matHeaderCellDef>
+                            <label [style.color]="getDay(date7|date)"> {{date7|date}}</label>
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="date 7">
+                            <mat-checkbox name="attendence" [checked]="getCheckedstatus(row,date7)" [disabled]="getCheckedstatus(row,date7)"
+                                (change)="saveAttendence(row,date7)"></mat-checkbox>
 
                         </mat-cell>
                     </ng-container>

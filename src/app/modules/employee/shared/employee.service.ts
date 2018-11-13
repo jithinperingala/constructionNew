@@ -2,17 +2,20 @@ import { Injectable } from '@angular/core';
 import { AjaxService } from 'src/app/core/services/ajax/ajax.service';
 import { Pathgenerator } from 'src/app/core/services/ajax/pathgenerator';
 import { tap, map } from 'rxjs/operators';
-import { Observable, observable, of } from 'rxjs';
-import { containsElement } from '@angular/animations/browser/src/render/shared';
+import { Observable, of } from 'rxjs';
 import { SessionService } from 'src/app/core/services/session/session';
+import * as moment from 'moment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeService {
   employeeDetails: Array<object>
   employeeType: Array<object>
-  constructor(private http: AjaxService, private pathgen: Pathgenerator, private session: SessionService) {
+  constructor(private http: AjaxService,
+    private pathgen: Pathgenerator,
+    private session: SessionService,
+   ) {
   }
   createUpdateEmployee(empObject) {
     return this.http._post(this.pathgen.createUpdateEmployee(), empObject)
@@ -148,8 +151,18 @@ export class EmployeeService {
     return this.http._post(this.pathgen.saveallocatedEmployes, data)
 
   }
-  getAttendence(workSite, date) {
-    return this.http._get(this.pathgen.saveEmployeeAttendence + "?siteid=" + workSite + "&date=" + date)
+  getAttendence(workSite, fromDate, toDate) {
+    return this.http._get(this.pathgen.saveEmployeeAttendence + "?siteid=" + workSite + "&fromDate=" + fromDate + "&toDate=" + toDate)
+      //  .pipe(map(res => this.formatEmployee(res[0])))
+  }
+  formatEmployee(dta) {
+    return dta.map(this.formatData)
+  }
+  formatData(dta) {
+     if(dta.AttendanceDate)
+     dta.AttendanceDate = moment(dta.AttendanceDate).format('YYYY-MM-DD');
+    console.log('filter',dta)
+    return dta
   }
 }
 
