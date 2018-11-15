@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { ReportsRoutingModule } from './reports-routing.module';
 import { AttendenceComponent } from './employee/attendence/attendence.component';
 import { MeterialModule } from 'src/app/shared/modules/meterial/meterial.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReportsRoutingModule,MeterialModule
+    ReportsRoutingModule,MeterialModule,FormsModule,ReactiveFormsModule
   ],
   declarations: [
     AttendenceComponent
