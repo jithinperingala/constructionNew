@@ -19,6 +19,7 @@ export class AttendenceComponent implements OnInit {
   toDate = new FormControl(new Date());
   totalAttendence
   attendenceBySite
+  displayedColumns: string[] = ['AttendanceDate', 'SiteName'];
   ngOnInit() {
 
   }
@@ -37,7 +38,7 @@ export class AttendenceComponent implements OnInit {
       res => {
         console.log("res", res)
         if (res && res[0] && res[0][0]) {
-          this.attendenceBySite=res[0][0]
+          this.attendenceBySite=res[0]
         }
       }
     )
