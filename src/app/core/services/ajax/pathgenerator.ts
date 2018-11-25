@@ -32,7 +32,10 @@ export class Pathgenerator {
             removeallocatedEmployes:"site/removeallocatedEmployes",
             
             EmployeePayment:"employee/payment",
-            EmployeePaymentReport:"employee/paymentReport"
+            EmployeePaymentReport:"employee/paymentReport",
+
+            Report_EmployeeFullAttendence:"reports/employees/attendence",
+            Report_EmployeeAttendenceBySite:"reports/employees/attendence/attendenceByEmployee"
         }
 
     private generatePath(uri): string {
@@ -96,6 +99,12 @@ export class Pathgenerator {
     }
     get saveEmployeeAttendence(){
         return this.generatePath(this.uriCollection.saveEmployeeAttendence)
+    }
+    get Report_EmployeeFullAttendence(){
+        return this.generatePath(this.uriCollection.Report_EmployeeFullAttendence) 
+    }
+    get Report_EmployeeAttendenceBySite(){
+        return this.generatePath(this.uriCollection.Report_EmployeeAttendenceBySite) 
     }
     
 }
