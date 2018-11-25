@@ -29,6 +29,11 @@ export class AttendenceComponent implements OnInit {
         console.log("res", res)
         if (res && res[0] && res[0][0]) {
           this.totalAttendence = res[0][0].TotalPresent
+          this.attendenceBySite=[]
+        }
+        else{
+          this.totalAttendence =0
+          this.attendenceBySite=[]
         }
       }
     )
