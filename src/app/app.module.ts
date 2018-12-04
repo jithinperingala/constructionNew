@@ -13,18 +13,20 @@ import { DeletePopupComponent } from './shared/components/delete-popup/delete-po
 import { MeterialModule } from './shared/modules/meterial/meterial.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ReportsComponent } from './modules/reports/reports.component';
+import { EmployeeDetailsComponent } from './shared/components/employee-details/employee-details.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DeletePopupComponent,
-    ReportsComponent
+    ReportsComponent,
+    EmployeeDetailsComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule,
     NotificationModule,HttpClientModule, AppRoutingModule,ModalModule.forRoot(),MeterialModule,NgxSpinnerModule
   ],
   bootstrap: [AppComponent],
-  entryComponents:[DeletePopupComponent]
+  entryComponents:[DeletePopupComponent,EmployeeDetailsComponent]
 })
 export class AppModule { }

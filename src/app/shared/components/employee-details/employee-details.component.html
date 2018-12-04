@@ -1,0 +1,60 @@
+<mat-card class="contentMargin">
+
+    <form class="example-form">
+
+        <div class="example-container">
+
+            <mat-form-field class="example-full-width">
+                <mat-select name="workSite" (selectionChange)="getEmployee()" placeholder="Select Employee Type"
+                    [(ngModel)]="empType">
+                    <mat-option *ngFor="let type of employeetype" [value]="type.type_id">
+                        {{type.employee_type_name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput (input)="getEmployee()" [(ngModel)]="searchKey" name="Search" placeholder="Search">
+            </mat-form-field>
+
+            <div class="example-container mat-elevation-z8">
+
+                <table mat-table [dataSource]="searchdata" matSort>
+                        <!--- Note that these columns can be defined in any order.
+                                  The actual rendered columns are set as a property on the row definition" -->
+
+                        <!-- Position Column -->
+
+                        <ng-container matColumnDef="employee_code">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef> Employee code </mat-header-cell>
+                            <mat-cell data-label="employee_code" *matCellDef="let row">
+                                {{row.employee_code}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="first_name">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef> Name </mat-header-cell>
+                            <mat-cell data-label="first_name" *matCellDef="let row">
+                                {{row.first_name}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="mobile">
+                            <mat-header-cell *matHeaderCellDef> Mobile No </mat-header-cell>
+                            <mat-cell data-label="mobile" *matCellDef="let row"> {{row.mobile}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="address">
+                            <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+                            <mat-cell data-label="address" *matCellDef="let row"> {{row.address}} </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                 
+                </table>
+            </div>
+        </div>
+    </form>
+</mat-card>
