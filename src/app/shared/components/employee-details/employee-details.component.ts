@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, AfterViewChecked, ViewChild, Inject } from '@angular/core';
 import { Router } from '@angular/router'
 import { EmployeeService } from 'src/app/modules/employee/shared/employee.service';
 import { NotifyService } from '../../../core/services/notification/notify.service';
@@ -10,7 +10,7 @@ import * as _ from 'underscore'
   templateUrl: './employee-details.component.html',
   styleUrls: ['./employee-details.component.scss']
 })
-export class EmployeeDetailsComponent implements OnInit {
+export class EmployeeDetailsComponent implements AfterViewChecked {
 
   searchKey = ""
   searchdata
@@ -25,7 +25,7 @@ export class EmployeeDetailsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data ) {}
   @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit() {
+  ngAfterViewChecked() {
     this.EmployeeService.getEmployeeType().subscribe(res => {
       console.log("app-emp-reg", res)
       this.employeetype = res[0]
@@ -41,5 +41,8 @@ export class EmployeeDetailsComponent implements OnInit {
       this.searchdata = new MatTableDataSource(res[0])
       this.searchdata.sort = this.sort;
     })
+  }
+  setEmployeeID(id){
+    console.log(id)
   }
 }
