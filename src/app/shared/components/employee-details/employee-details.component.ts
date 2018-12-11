@@ -5,6 +5,7 @@ import { EmployeeService } from 'src/app/modules/employee/shared/employee.servic
 import { NotifyService } from '../../../core/services/notification/notify.service';
 import { MatSort, MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import * as _ from 'underscore'
+import { SharedDataService } from '../../services/sharedData/shared-data.service';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
@@ -22,7 +23,7 @@ export class EmployeeDetailsComponent implements OnInit {
     private router: Router, private notify: NotifyService,
     private EmployeeService: EmployeeService,
     public dialog: MatDialog, public dialogRef: MatDialogRef<EmployeeDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data ) {}
+    @Inject(MAT_DIALOG_DATA) public data ,private dataService:SharedDataService) {}
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
@@ -43,6 +44,8 @@ export class EmployeeDetailsComponent implements OnInit {
     })
   }
   setEmployeeID(id){
-    console.log(id)
+    console.log("IDID",id)
+    this.dataService.selectedEmployeeFromSearch=id
+    this.dialogRef.close();
   }
 }

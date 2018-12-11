@@ -13,7 +13,7 @@
     <div class="example-container">
       <div style="text-align: center;">
         <mat-form-field >
-          <input matInput placeholder="Employee Id">
+          <input matInput name="empId" placeholder="Employee Name" [(ngModel)]="empId" [disabled]="true">
         </mat-form-field>
        
           <button mat-button (click)="openDialog()">Search Employee</button>
@@ -29,7 +29,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput [matDatepicker]="picker2" placeholder="To Date" [formControl]="toDate">
+          <input matInput [matDatepicker]="picker2" placeholder="To Date" (dateChange)="getCompleteAttendence($event)" [formControl]="toDate">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
