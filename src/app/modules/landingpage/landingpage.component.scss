@@ -4,5 +4,8 @@
   }
 
   mat-sidenav-content{
-    height: -webkit-fill-available;
+   // height: -webkit-fill-available;
+}
+.example-sidenav-container{
+  overflow: auto
 }

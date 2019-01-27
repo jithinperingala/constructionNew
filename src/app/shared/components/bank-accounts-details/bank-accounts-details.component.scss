@@ -1,0 +1,17 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  .flex-container {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  .flex-container>div>.mat-form-field{
+      display:block 
+  }

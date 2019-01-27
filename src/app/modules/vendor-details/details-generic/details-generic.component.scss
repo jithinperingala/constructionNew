@@ -1,0 +1,8 @@
+.flex-container {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  .flex-container>div>.mat-form-field{
+      display:block 
+  }

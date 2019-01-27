@@ -10,6 +10,8 @@ const routes: Routes = [
         path:'employee',loadChildren:'src/app/modules/employee/employee.module#EmployeeModule'
       },{
         path: 'report', loadChildren: 'src/app/modules/reports/reports.module#ReportsModule'
+      },{
+        path: 'vendor', loadChildren: 'src/app/modules/vendor-details/vendor-details.module#VendorDetailsModule'
       }
     ]
   }

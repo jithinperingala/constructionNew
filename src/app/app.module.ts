@@ -20,7 +20,7 @@ import { EmployeeDetailsComponent } from './shared/components/employee-details/e
     LoginComponent,
     DeletePopupComponent,
     ReportsComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
   ],
   imports: [
     BrowserModule, AppRoutingModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule,

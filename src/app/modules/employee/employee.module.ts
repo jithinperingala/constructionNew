@@ -6,8 +6,6 @@ import { EmployeeComponent } from './employee.component';
 import { EmployeeRegistrationComponent } from './employee-registration/employee-registration.component';
 import { EmployeeSearchComponent } from './employee-search/employee-search.component';
 import { EmployeeTypeComponent } from './employee-type/employee-type.component';
-import { PaymentComponent } from './payment/payment.component';
-import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
 import { EmployeeAllocationComponent } from './employee-allocation/employee-allocation.component';
 import { EmployeeAttendenceComponent } from './employee-attendence/employee-attendence.component';
 import { EmployeeRoutingModule } from './employee-routing.module';
@@ -21,8 +19,6 @@ import { MeterialModule } from 'src/app/shared/modules/meterial/meterial.module'
     EmployeeRegistrationComponent,
     EmployeeSearchComponent,
     EmployeeTypeComponent,
-    PaymentComponent,
-    PaymentSummaryComponent,
     EmployeeAllocationComponent,
     EmployeeAttendenceComponent,]
 })

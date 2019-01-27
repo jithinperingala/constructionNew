@@ -6,8 +6,6 @@ import { EmployeeSearchComponent } from './employee-search/employee-search.compo
 import { EmployeeTypeComponent } from './employee-type/employee-type.component';
 import { EmployeeAllocationComponent } from './employee-allocation/employee-allocation.component';
 import { EmployeeAttendenceComponent } from './employee-attendence/employee-attendence.component';
-import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
-import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -18,20 +16,7 @@ const routes: Routes = [
         { path: 'search', component: EmployeeSearchComponent },
         { path: 'employeeType', component: EmployeeTypeComponent },
         { path: 'employeeAllocation', component: EmployeeAllocationComponent },
-        { path: 'employeeAttendence', component: EmployeeAttendenceComponent },
-        { path: 'paymentSummary', component: PaymentSummaryComponent },
-        {
-          path: 'cashTransfer', component: PaymentComponent,
-          data: {
-            formData: { bulkPaymentMode: false }
-          }
-        },
-        {
-          path: 'payment', component: PaymentComponent,
-          data: {
-            formData: { bulkPaymentMode: true }
-          }
-        }
+        { path: 'employeeAttendence', component: EmployeeAttendenceComponent }
       ]
   }
 ];
