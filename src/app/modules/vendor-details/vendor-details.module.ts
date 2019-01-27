@@ -7,9 +7,11 @@ import { SupplierComponent } from './supplier/supplier.component';
 import { MeterialModule } from 'src/app/shared/modules/meterial/meterial.module';
 import { DetailsGenericComponent } from './details-generic/details-generic.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { VendorDetailsComponent } from './vendor-details.component';
 
 @NgModule({
   declarations: [
+    VendorDetailsComponent,
     ContractorComponent,
     SupplierComponent,
     DetailsGenericComponent
