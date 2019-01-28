@@ -1,0 +1,39 @@
+<app-card-header [headerText]="headerText"></app-card-header>
+<mat-card class="contentMargin">
+
+    <form class="example-form">
+
+      <div class="example-container">
+
+        <div class="flex-inner-container">
+          <div style="flex-grow: 6;margin-right: 10px;">
+            
+                <mat-form-field>
+                    <mat-select placeholder="From A/C">
+                      <mat-option value="option">ravi</mat-option>
+                      <mat-option value="option">ramu</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+           
+          </div>
+
+        </div>
+        <div class="flex-inner-container">
+          <div style="flex-grow: 6;margin-right: 10px;">
+            <mat-form-field>
+              <input matInput placeholder="Amount">
+            </mat-form-field>
+          </div>
+          <div style="flex-grow: 6">
+            <mat-form-field>
+              <input matInput placeholder="Description">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="example-button-row">
+          <button mat-raised-button color="primary">Primary</button>
+          <button mat-raised-button color="warn">Warn</button>
+        </div>
+    </form>
+  </mat-card>

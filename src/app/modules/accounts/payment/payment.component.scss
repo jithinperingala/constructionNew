@@ -1,0 +1,18 @@
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    //align-items: baseline;
+  }
+  .flex-inner-container {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  .flex-inner-container>div>.mat-form-field{
+      display:block 
+  }
+  .example-button-row button {
+    margin-right: 8px;
+  }

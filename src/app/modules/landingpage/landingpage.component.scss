@@ -3,9 +3,11 @@
     overflow-x: hidden
   }
 
-  mat-sidenav-content{
+  mat-sidenav{
    // height: -webkit-fill-available;
+   padding: 5px;
 }
 .example-sidenav-container{
-  overflow: auto
+  overflow: auto;
+
 }

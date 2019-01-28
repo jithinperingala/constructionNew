@@ -13,6 +13,9 @@ const routes: Routes = [
       },{
         path: 'vendor', loadChildren: 'src/app/modules/vendor-details/vendor-details.module#VendorDetailsModule'
       }
+      ,{
+        path: 'accounts', loadChildren: 'src/app/modules/accounts/accounts.module#AccountsModule'
+      }
     ]
   }
 ];
