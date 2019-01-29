@@ -44,7 +44,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    ScrollingModule],
+    ScrollingModule
+    ],
   exports: [ CdkTableModule,
     CdkTreeModule,
     DragDropModule,

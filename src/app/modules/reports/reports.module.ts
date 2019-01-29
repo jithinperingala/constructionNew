@@ -6,6 +6,8 @@ import { AttendenceComponent } from './employee/attendence/attendence.component'
 import { MeterialModule } from 'src/app/shared/modules/meterial/meterial.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { LaborComponent } from './payment/labor/labor.component';
+import { VendorComponent } from './payment/vendor/vendor.component';
 
 @NgModule({
   imports: [
@@ -13,7 +15,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ReportsRoutingModule,MeterialModule,FormsModule,ReactiveFormsModule,SharedModule
   ],
   declarations: [
-    AttendenceComponent
+    AttendenceComponent,
+    LaborComponent,
+    VendorComponent
   ]
 })
 export class ReportsModule { }

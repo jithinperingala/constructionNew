@@ -1,0 +1,22 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.example-button-row button,
+.example-button-row a {
+margin-right: 8px;
+}
+.flex-container {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.flex-container>div>.mat-form-field{
+    display:block 
+}
