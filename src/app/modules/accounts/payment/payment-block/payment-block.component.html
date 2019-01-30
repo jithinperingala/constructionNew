@@ -8,11 +8,11 @@
         <div class="flex-inner-container">
           <div style="flex-grow: 10;">
               <mat-form-field>
-                  <mat-select placeholder="Select Payment Type">
-                    <mat-option value="option">Fund Transfer</mat-option>
-                    <mat-option value="option">Labor Payment</mat-option>
-                    <mat-option value="option">contractor</mat-option>
-                    <mat-option value="option">Supplier</mat-option>
+                  <mat-select placeholder="Select Payment Type" (selectionChange)="paymentTypeChange($event)">
+                    <mat-option value="fundTransfer">Fund Transfer</mat-option>
+                    <mat-option value="laborPayment">Labor Payment</mat-option>
+                    <mat-option value="contractor">contractor</mat-option>
+                    <mat-option value="Supplier">Supplier</mat-option>
                   </mat-select>
                 </mat-form-field>
           </div>
@@ -51,8 +51,8 @@
           <div style="flex-grow: 7" *ngIf="favoriteSeason=='Bank'">
             <mat-form-field>
                 <mat-select placeholder="Select A/c">
-                    <mat-option value="option">raju</mat-option>
-                    <mat-option value="option">vasu</mat-option>
+                    <mat-option value="option">2534223425</mat-option>
+                    <mat-option value="option">1232423534</mat-option>
                   </mat-select>
             </mat-form-field>
           </div>

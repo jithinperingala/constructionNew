@@ -7,18 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LaborComponent implements OnInit {
   ELEMENT_DATA = [
-    {position: new Date(), name: 'Hydrogen', weight: 1.0079, symbol: 1.0079},
-    {position: new Date(), name: 'Helium', weight: 4.0026, symbol: 1.0079},
-    {position: new Date(), name: 'Lithium', weight: 6.941, symbol: 1.0079},
-    {position: new Date(), name: 'Beryllium', weight: 9.0122, symbol: 1.0079},
-    {position: new Date(), name: 'Boron', weight: 10.811, symbol: 1.0079},
-    {position: new Date(), name: 'Carbon', weight: 12.0107, symbol: 1.0079},
-    {position: new Date(), name: 'Nitrogen', weight: 14.0067, symbol: 1.0079},
-    {position: new Date(), name: 'Oxygen', weight: 15.9994, symbol: 1.0079},
-    {position: new Date(), name: 'Fluorine', weight: 18.9984, symbol: 1.0079},
-    {position: new Date(), name: 'Neon', weight: 20.1797, symbol: 1.0079},
+    {position: new Date(), name: 'Kannur', weight: "Tijo", symbol: "Ranju",amount:20000},
+    {position: new Date(), name: 'Trivandrum', weight: "Raju", symbol: "Ranju",amount:70000},
+    {position: new Date(), name: 'Trivandrum', weight: "Ranju", symbol: "Raju",amount:20000},
+    {position: new Date(), name: 'Kannur', weight: "Tijo", symbol: "Raghu",amount:20000},
+    {position: new Date(), name: 'Trivandrum', weight: "Ranju", symbol: "Raghu",amount:20000},
+    {position: new Date(), name: 'Kannur', weight:"Ranju", symbol: "Raghu",amount:20000},
+    {position: new Date(), name: 'Trivandrum', weight: "Tijo", symbol: "Raju",amount:5600},
+    {position: new Date(), name: 'Kannur', weight: "Ranju", symbol:"Raghu",amount:5600},
+    {position: new Date(), name: 'Trivandrum', weight: "Tijo", symbol: "Ranju",amount:3400},
+    {position: new Date(), name: 'Trivandrum', weight: "Ranju", symbol: "Raju",amount:20000},
   ];
-  displayedColumns = ['Date', 'particulars', 'credit', 'debit'];
+  displayedColumns = ['Date', 'particulars', 'credit', 'debit','amount','button'];
   dataSource = this.ELEMENT_DATA;
   constructor() { 
     
