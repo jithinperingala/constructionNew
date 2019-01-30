@@ -13,7 +13,9 @@ export class PaymentComponent implements OnInit {
     subTitle: 'Payment',
     path: 'accounts/Payment'
   }
+
   ngOnInit() {
+    
   }
 
 }

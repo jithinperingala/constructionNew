@@ -1,0 +1,17 @@
+.flex-inner-container {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  .flex-inner-container>div>.mat-form-field{
+      display:block 
+  }
+  
+  .example-radio-group {
+    display: inline-flex;
+    flex-direction: row;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }

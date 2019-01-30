@@ -10,12 +10,15 @@ import { PaymentViewComponent } from './payment/payment-view/payment-view.compon
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MeterialModule } from 'src/app/shared/modules/meterial/meterial.module';
 import { PettycashbookComponent } from './pettycashbook/pettycashbook.component';
+import { FormsModule } from '@angular/forms';
+import { PaymentBlockComponent } from './payment/payment-block/payment-block.component';
+import { LaborPaymentComponent } from './payment/labor-payment/labor-payment.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    AccountsRoutingModule,MeterialModule,SharedModule
+    AccountsRoutingModule,MeterialModule,SharedModule,FormsModule
   ],
-  declarations: [MeterialPurchaseComponent, ItemDetailsComponent, UnitDetailsComponent, PaymentComponent, PaymentViewComponent, PettycashbookComponent]
+  declarations: [MeterialPurchaseComponent, ItemDetailsComponent, UnitDetailsComponent, PaymentComponent, PaymentViewComponent, PettycashbookComponent, PaymentBlockComponent, LaborPaymentComponent]
 })
 export class AccountsModule { }

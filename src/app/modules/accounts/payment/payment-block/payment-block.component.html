@@ -1,0 +1,75 @@
+
+
+  <mat-card class="contentMargin">
+
+    <form class="example-form">
+
+      <div class="example-container">
+        <div class="flex-inner-container">
+          <div style="flex-grow: 10;">
+              <mat-form-field>
+                  <mat-select placeholder="Select Payment Type">
+                    <mat-option value="option">Fund Transfer</mat-option>
+                    <mat-option value="option">Labor Payment</mat-option>
+                    <mat-option value="option">contractor</mat-option>
+                    <mat-option value="option">Supplier</mat-option>
+                  </mat-select>
+                </mat-form-field>
+          </div>
+
+        </div>
+        <div class="flex-inner-container">
+          <div style="flex-grow: 6;margin-right: 10px;">
+            
+                <mat-form-field>
+                    <mat-select placeholder="From">
+                      <mat-option value="option">ravi</mat-option>
+                      <mat-option value="option">ramu</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+           
+          </div>
+          <div style="flex-grow: 6">
+            <mat-form-field>
+                <mat-select placeholder="To">
+                    <mat-option value="option">raju</mat-option>
+                    <mat-option value="option">vasu</mat-option>
+                  </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex-inner-container">
+          <div style="flex-grow: 6;">
+            
+            <mat-radio-group class="example-radio-group" name="favoriteSeason" [(ngModel)]="favoriteSeason">
+              <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                {{season}}
+              </mat-radio-button>
+            </mat-radio-group>
+           
+          </div>
+          <div style="flex-grow: 7" *ngIf="favoriteSeason=='Bank'">
+            <mat-form-field>
+                <mat-select placeholder="Select A/c">
+                    <mat-option value="option">raju</mat-option>
+                    <mat-option value="option">vasu</mat-option>
+                  </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex-inner-container">
+          <div style="flex-grow: 5;margin-right: 10px;">
+            <mat-form-field>
+              <input matInput placeholder="Amount">
+            </mat-form-field>
+          </div>
+          <div style="flex-grow: 8">
+            <mat-form-field>
+              <input matInput placeholder="Description">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+  
+    </form>
+  </mat-card>
