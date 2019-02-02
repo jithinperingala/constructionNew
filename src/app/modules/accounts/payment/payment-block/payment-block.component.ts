@@ -9,7 +9,7 @@ export class PaymentBlockComponent implements OnInit {
 
   constructor() { }
   favoriteSeason: string;
-  seasons: string[] = ['Bank', 'cache', 'check'];
+  seasons: string[] = ['Bank', 'cash', 'check'];
  
   @Output() typeChange=new EventEmitter();
   ngOnInit() {

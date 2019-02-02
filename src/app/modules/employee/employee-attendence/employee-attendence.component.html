@@ -57,8 +57,11 @@
                             <label [style.color]="getDay(date.value)"> {{date.value|date}}</label>
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="date 1">
-                            <mat-checkbox name="attendence" [checked]="getCheckedstatus(row,date.value)" [disabled]="getCheckedstatus(row,date.value)"
-                                (change)="saveAttendence(row,date.value)"></mat-checkbox>
+                            <!-- <mat-checkbox name="attendence" [checked]="getCheckedstatus(row,date.value)" [disabled]="getCheckedstatus(row,date.value)"
+                                (change)="saveAttendence(row,date.value)"></mat-checkbox> -->
+                                <mat-form-field>
+                                        <input matInput >
+                                      </mat-form-field>
 
                         </mat-cell>
                     </ng-container>
@@ -70,9 +73,11 @@
 
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="date 2">
-                            <mat-checkbox name="attendence" [checked]="getCheckedstatus(row,date2)" [disabled]="getCheckedstatus(row,date2)"
-                                (change)="saveAttendence(row,date2)"></mat-checkbox>
-
+                            <!-- <mat-checkbox name="attendence" [checked]="getCheckedstatus(row,date2)" [disabled]="getCheckedstatus(row,date2)"
+                                (change)="saveAttendence(row,date2)"></mat-checkbox> -->
+                                <mat-form-field>
+                                        <input matInput >
+                                      </mat-form-field>
                         </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="Mark3">

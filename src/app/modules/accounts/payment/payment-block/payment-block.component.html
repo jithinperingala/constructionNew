@@ -5,12 +5,30 @@
     <form class="example-form">
 
       <div class="example-container">
+          <div class="flex-inner-container">
+         
+              <div style="flex-grow: 7;margin-right: 10px;">
+                  <mat-form-field>
+                      <mat-select placeholder="Select Site">
+                        <mat-option value="site1">site1</mat-option>
+                        <mat-option value="site2">site2</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                </div>
+                <div style="flex-grow: 6">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                </div>
+            </div>
         <div class="flex-inner-container">
           <div style="flex-grow: 10;">
               <mat-form-field>
                   <mat-select placeholder="Select Payment Type" (selectionChange)="paymentTypeChange($event)">
                     <mat-option value="fundTransfer">Fund Transfer</mat-option>
-                    <mat-option value="laborPayment">Labor Payment</mat-option>
+                    <mat-option value="laborPayment">labour  Payment</mat-option>
                     <mat-option value="contractor">contractor</mat-option>
                     <mat-option value="Supplier">Supplier</mat-option>
                   </mat-select>
@@ -48,15 +66,18 @@
             </mat-radio-group>
            
           </div>
-          <div style="flex-grow: 7" *ngIf="favoriteSeason=='Bank'">
-            <mat-form-field>
-                <mat-select placeholder="Select A/c">
-                    <mat-option value="option">2534223425</mat-option>
-                    <mat-option value="option">1232423534</mat-option>
-                  </mat-select>
-            </mat-form-field>
-          </div>
+         
         </div>
+        <div class="flex-inner-container" [hidden]="favoriteSeason!='Bank'">
+            <div style="flex-grow: 7" >
+                <mat-form-field>
+                    <mat-select placeholder="Select A/c">
+                        <mat-option value="option">2534223425</mat-option>
+                        <mat-option value="option">1232423534</mat-option>
+                      </mat-select>
+                </mat-form-field>
+              </div>
+          </div>
         <div class="flex-inner-container">
           <div style="flex-grow: 5;margin-right: 10px;">
             <mat-form-field>
