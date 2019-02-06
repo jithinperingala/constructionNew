@@ -1,29 +1,33 @@
 <app-card-header [headerText]="headerText"></app-card-header>
 <mat-card class="contentMargin">
-
   <div class="flex-container">
     <div style="display: contents;">
       <div style="flex-grow: 8;">
         <div>
-          <app-payment-block (typeChange)="paymentTypeChanged($event)"></app-payment-block>
+          <app-payment-block
+            (typeChange)="paymentTypeChanged($event)"
+          ></app-payment-block>
         </div>
         <div *ngIf="laborPayment">
           <app-labor-payment></app-labor-payment>
         </div>
         <!--  -->
-        <mat-card class="contentMargin" >
+        <mat-card class="contentMargin">
           <div class="example-button-row">
-            <button mat-raised-button color="primary">Save</button>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="savePaymentDetails()"
+            >
+              Save
+            </button>
             <button mat-raised-button color="warn">Cancel</button>
           </div>
         </mat-card>
-
       </div>
       <div *ngIf="laborPayment" style="flex-grow: 2">
         <app-payment-view></app-payment-view>
       </div>
-
     </div>
-
   </div>
 </mat-card>

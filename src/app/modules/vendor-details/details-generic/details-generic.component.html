@@ -1,36 +1,38 @@
+<form [formGroup]="userForm" class="example-form">
 <div class="flex-container">
     <div style="flex-grow: 6;margin-right: 10px;">
       <mat-form-field>
-        <input matInput placeholder="name">
+        <input matInput placeholder="name" formControlName="name">
       </mat-form-field>
     </div>
     <div style="flex-grow: 6">
       <mat-form-field>
-        <textarea matInput placeholder="address"></textarea>
+        <textarea matInput placeholder="address" formControlName="address"></textarea>
       </mat-form-field>
     </div>
   </div>
   <div class="flex-container">
     <div style="flex-grow: 6;margin-right: 10px;">
       <mat-form-field>
-        <input matInput placeholder="contactNo">
+        <input matInput placeholder="contactNo" formControlName="contactNo">
       </mat-form-field>
     </div>
     <div style="flex-grow: 6">
       <mat-form-field>
-        <input matInput placeholder="mobile">
+        <input matInput placeholder="mobile" formControlName="mobile">
       </mat-form-field>
     </div>
   </div>
   <div class="flex-container">
     <div style="flex-grow: 6;margin-right: 10px;">
       <mat-form-field>
-        <input matInput placeholder="email">
+        <input matInput placeholder="email" formControlName="email">
       </mat-form-field>
     </div>
     <div style="flex-grow: 6">
       <mat-form-field>
-        <input matInput placeholder="contactPerson">
+        <input matInput placeholder="contactPerson" formControlName="contactPerson">
       </mat-form-field>
     </div>
   </div>
+</form>

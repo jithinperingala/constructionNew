@@ -2,7 +2,7 @@
   <app-card-header [headerText]="headerText"></app-card-header>
   <mat-divider></mat-divider>
   <mat-card class="contentMargin">
-    <form class="example-form">
+ 
       <div class="example-container">
   
         <app-details-generic></app-details-generic>
@@ -10,9 +10,8 @@
         <app-bank-accounts-details></app-bank-accounts-details>
   
         <div class="example-button-row">
-          <button mat-raised-button color="primary">Primary</button>
-          <button mat-raised-button color="warn">Warn</button>
+          <button mat-raised-button color="primary" (click)="saveSupplierDetails()">Save</button>
+          <button mat-raised-button color="warn">Clear</button>
         </div>
       </div>
-    </form>
   </mat-card>

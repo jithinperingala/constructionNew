@@ -1,21 +1,36 @@
-import { Component, OnInit,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 @Component({
-  selector: 'app-payment-block',
-  templateUrl: './payment-block.component.html',
-  styleUrls: ['./payment-block.component.scss']
+  selector: "app-payment-block",
+  templateUrl: "./payment-block.component.html",
+  styleUrls: ["./payment-block.component.scss"]
 })
 export class PaymentBlockComponent implements OnInit {
-
-  constructor() { }
+  constructor(private fb: FormBuilder) {}
   favoriteSeason: string;
-  seasons: string[] = ['Bank', 'cash', 'check'];
- 
-  @Output() typeChange=new EventEmitter();
+  seasons: string[] = ["Bank", "cash", "check"];
+  paymentBlock: FormGroup;
+  @Output() typeChange = new EventEmitter();
   ngOnInit() {
-    this.favoriteSeason="Bank"
+    this.paymentBlock = this.fb.group({
+      siteId: ["", []],
+      date: ["", []],
+      paymentType: ["", []],
+      fromId: ["", []],
+      toId: ["", []],
+      cachTransferMode: ["Bank", []],
+      bankId: ["", []],
+      amount: ["", []],
+      description: ["", []]
+    });
+
+    this.paymentBlock.valueChanges.subscribe(res => {
+      this.typeChange.emit(res.paymentType);
+    });
   }
-  paymentTypeChange(data){
-    this.typeChange.emit(data)
+
+  getFormValues() {
+    return this.paymentBlock.value;
   }
 }

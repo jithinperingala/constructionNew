@@ -34,6 +34,9 @@ export class BankAccountsDetailsComponent implements OnInit {
   removeBank(id) {
     this.BANK_DATA.splice(id - 1, 1)
   }
+  getFormValues(){
+    return this.BANK_DATA
+  }
 
 }
 class Bank {

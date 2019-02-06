@@ -1,96 +1,107 @@
-
-
-  <mat-card class="contentMargin">
-
-    <form class="example-form">
-
-      <div class="example-container">
-          <div class="flex-inner-container">
-         
-              <div style="flex-grow: 7;margin-right: 10px;">
-                  <mat-form-field>
-                      <mat-select placeholder="Select Site">
-                        <mat-option value="site1">site1</mat-option>
-                        <mat-option value="site2">site2</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                </div>
-                <div style="flex-grow: 6">
-                    <mat-form-field>
-                        <input matInput [matDatepicker]="picker" placeholder="Date">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                </div>
-            </div>
-        <div class="flex-inner-container">
-          <div style="flex-grow: 10;">
-              <mat-form-field>
-                  <mat-select placeholder="Select Payment Type" (selectionChange)="paymentTypeChange($event)">
-                    <mat-option value="fundTransfer">Fund Transfer</mat-option>
-                    <mat-option value="laborPayment">labour  Payment</mat-option>
-                    <mat-option value="contractor">contractor</mat-option>
-                    <mat-option value="Supplier">Supplier</mat-option>
-                  </mat-select>
-                </mat-form-field>
-          </div>
-
+<mat-card class="contentMargin">
+  <form class="example-form" [formGroup]="paymentBlock">
+    <div class="example-container">
+      <div class="flex-inner-container">
+        <div style="flex-grow: 7;margin-right: 10px;">
+          <mat-form-field>
+            <mat-select placeholder="Select Site" formControlName="siteId">
+              <mat-option value="site1">site1</mat-option>
+              <mat-option value="site2">site2</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-        <div class="flex-inner-container">
-          <div style="flex-grow: 6;margin-right: 10px;">
-            
-                <mat-form-field>
-                    <mat-select placeholder="From">
-                      <mat-option value="option">ravi</mat-option>
-                      <mat-option value="option">ramu</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-           
-          </div>
-          <div style="flex-grow: 6">
-            <mat-form-field>
-                <mat-select placeholder="To">
-                    <mat-option value="option">raju</mat-option>
-                    <mat-option value="option">vasu</mat-option>
-                  </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="flex-inner-container">
-          <div style="flex-grow: 6;">
-            
-            <mat-radio-group class="example-radio-group" name="favoriteSeason" [(ngModel)]="favoriteSeason">
-              <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-                {{season}}
-              </mat-radio-button>
-            </mat-radio-group>
-           
-          </div>
-         
-        </div>
-        <div class="flex-inner-container" [hidden]="favoriteSeason!='Bank'">
-            <div style="flex-grow: 7" >
-                <mat-form-field>
-                    <mat-select placeholder="Select A/c">
-                        <mat-option value="option">2534223425</mat-option>
-                        <mat-option value="option">1232423534</mat-option>
-                      </mat-select>
-                </mat-form-field>
-              </div>
-          </div>
-        <div class="flex-inner-container">
-          <div style="flex-grow: 5;margin-right: 10px;">
-            <mat-form-field>
-              <input matInput placeholder="Amount">
-            </mat-form-field>
-          </div>
-          <div style="flex-grow: 8">
-            <mat-form-field>
-              <input matInput placeholder="Description">
-            </mat-form-field>
-          </div>
+        <div style="flex-grow: 6">
+          <mat-form-field>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              placeholder="Date"
+              formControlName="date"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
         </div>
       </div>
-  
-    </form>
-  </mat-card>
+      <div class="flex-inner-container">
+        <div style="flex-grow: 10;">
+          <mat-form-field>
+            <mat-select
+              placeholder="Select Payment Type"
+              formControlName="paymentType"
+            >
+              <mat-option value="fundTransfer">Fund Transfer</mat-option>
+              <mat-option value="laborPayment">labour Payment</mat-option>
+              <mat-option value="contractor">contractor</mat-option>
+              <mat-option value="Supplier">Supplier</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="flex-inner-container">
+        <div style="flex-grow: 6;margin-right: 10px;">
+          <mat-form-field>
+            <mat-select placeholder="From" formControlName="fromId">
+              <mat-option value="option">ravi</mat-option>
+              <mat-option value="option">ramu</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div style="flex-grow: 6">
+          <mat-form-field>
+            <mat-select placeholder="To" formControlName="toId">
+              <mat-option value="option">raju</mat-option>
+              <mat-option value="option">vasu</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="flex-inner-container">
+        <div style="flex-grow: 6;">
+          <mat-radio-group
+            class="example-radio-group"
+            name="favoriteSeason"
+            formControlName="cachTransferMode"
+          >
+            <mat-radio-button
+              class="example-radio-button"
+              *ngFor="let season of seasons"
+              [value]="season"
+            >
+              {{ season }}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="flex-inner-container" [hidden]="favoriteSeason != 'Bank'">
+        <div style="flex-grow: 7">
+          <mat-form-field>
+            <mat-select placeholder="Select A/c" formControlName="bankId">
+              <mat-option value="option">2534223425</mat-option>
+              <mat-option value="option">1232423534</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="flex-inner-container">
+        <div style="flex-grow: 5;margin-right: 10px;">
+          <mat-form-field>
+            <input matInput placeholder="Amount" formControlName="amount" />
+          </mat-form-field>
+        </div>
+        <div style="flex-grow: 8">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Description"
+              formControlName="description"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-card>

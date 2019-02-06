@@ -1,56 +1,66 @@
 <app-card-header [headerText]="headerText"></app-card-header>
 <mat-card class="contentMargin">
-
-    <form class="example-form">
-
-      <div class="example-container">
-          <div class="flex-inner-container">
-         
-              <div style="flex-grow: 7;margin-right: 10px;">
-                  <mat-form-field>
-                      <mat-select placeholder="Select Site">
-                        <mat-option value="site1">site1</mat-option>
-                        <mat-option value="site2">site2</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                </div>
-                <div style="flex-grow: 6">
-                    <mat-form-field>
-                        <input matInput [matDatepicker]="picker" placeholder="Date">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                </div>
-            </div>
-        <div class="flex-inner-container">
-          <div style="flex-grow: 6;margin-right: 10px;">
-            
-                <mat-form-field>
-                    <mat-select placeholder="From A/C">
-                      <mat-option value="option">ravi</mat-option>
-                      <mat-option value="option">ramu</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-           
-          </div>
-
+  <form
+    class="example-form"
+    [formGroup]="pettyCashBook"
+    (ngSubmit)="saveFormData(pettyCashBook.value)"
+  >
+    <div class="example-container">
+      <div class="flex-inner-container">
+        <div style="flex-grow: 7;margin-right: 10px;">
+          <mat-form-field>
+            <mat-select placeholder="Select Site" formControlName="siteId">
+              <mat-option value="site1">site1</mat-option>
+              <mat-option value="site2">site2</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-        <div class="flex-inner-container">
-          <div style="flex-grow: 6;margin-right: 10px;">
-            <mat-form-field>
-              <input matInput placeholder="Amount">
-            </mat-form-field>
-          </div>
-          <div style="flex-grow: 6">
-            <mat-form-field>
-              <input matInput placeholder="Description">
-            </mat-form-field>
-          </div>
+        <div style="flex-grow: 6">
+          <mat-form-field>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              placeholder="Date"
+              formControlName="date"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
         </div>
       </div>
-      <div class="example-button-row">
-          <button mat-raised-button color="primary">Primary</button>
-          <button mat-raised-button color="warn">Warn</button>
+      <div class="flex-inner-container">
+        <div style="flex-grow: 6;margin-right: 10px;">
+          <mat-form-field>
+            <mat-select placeholder="From A/C" formControlName="fromId">
+              <mat-option value="option">ravi</mat-option>
+              <mat-option value="option">ramu</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-    </form>
-  </mat-card>
+      </div>
+      <div class="flex-inner-container">
+        <div style="flex-grow: 6;margin-right: 10px;">
+          <mat-form-field>
+            <input matInput placeholder="Amount" formControlName="amount" />
+          </mat-form-field>
+        </div>
+        <div style="flex-grow: 6">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Description"
+              formControlName="description"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="example-button-row">
+      <button mat-raised-button color="primary" type="submit">Save</button>
+      <button mat-raised-button color="warn">Cancel</button>
+    </div>
+  </form>
+</mat-card>
