@@ -9,6 +9,7 @@ export class VendorService {
   constructor(private http: AjaxService, private pathgen: Pathgenerator) {}
 
   saveSupplier(data) {
+    data["createUpdate"] = 0;
     return this.http._post(this.pathgen.saveVendorDetails, data);
   }
 }

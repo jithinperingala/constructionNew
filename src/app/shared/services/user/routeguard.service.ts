@@ -1,21 +1,22 @@
-import { Injectable } from '@angular/core';
-import { CanActivateChild, Router } from '@angular/router'
-import { UserService } from './user.service';
+import { Injectable } from "@angular/core";
+import { CanActivateChild, Router } from "@angular/router";
+import { UserService } from "./user.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class RouteguardService implements CanActivateChild {
-
-  constructor(private userservice: UserService, private router: Router) { }
+  constructor(private userservice: UserService, private router: Router) {}
   canActivateChild() {
-    if (this.userservice.loggeduser) {
-      return true
-
+    console.log("this.userservice.loggeduser", this.userservice.loggeduser);
+    if (
+      this.userservice.loggeduser !== undefined ||
+      this.userservice.loggeduser !== null
+    ) {
+      return true;
     } else {
-      this.router.navigate([''])
-      return false
+      this.router.navigate([""]);
+      return false;
     }
-
   }
 }

@@ -24,7 +24,7 @@ export class SupplierComponent implements OnInit {
   saveSupplierDetails() {
     // console.log(this.bankDetails);
     this.vendorservice
-      .saveSupplier(this.saveSupplierDetails())
+      .saveSupplier(this.generic.getFormValues())
       .subscribe(res => {
         console.log(res);
       });
