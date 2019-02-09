@@ -34,7 +34,9 @@ export class Pathgenerator {
     Report_EmployeeAttendenceBySite:
       "reports/employees/attendence/attendenceByEmployee",
 
-    saveVendorDetails: "vendor/supplier"
+    saveVendorDetails: "vendor/supplier",
+
+    saveBankDetails;""
   };
 
   private generatePath(uri): string {
