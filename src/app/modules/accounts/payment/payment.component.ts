@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { PaymentBlockComponent } from "./payment-block/payment-block.component";
 import { LaborPaymentComponent } from "./labor-payment/labor-payment.component";
+import { PaymentService } from '../shared/payment.service';
 
 @Component({
   selector: "app-payment",
@@ -10,14 +11,14 @@ import { LaborPaymentComponent } from "./labor-payment/labor-payment.component";
 export class PaymentComponent implements OnInit {
   @ViewChild(PaymentBlockComponent) paymentBlock: PaymentBlockComponent;
   @ViewChild(LaborPaymentComponent) laborPaymentBlock: LaborPaymentComponent;
-  constructor() {}
+  constructor(private paymentService: PaymentService) { }
   headerText = {
     cardTitle: "Payment",
     subTitle: "Payment",
     path: "accounts/Payment"
   };
   laborPayment = false;
-  ngOnInit() {}
+  ngOnInit() { }
   paymentTypeChanged(data) {
     console.log("dfsdf", data);
     if (data == "laborPayment") {
@@ -29,5 +30,10 @@ export class PaymentComponent implements OnInit {
   savePaymentDetails() {
     console.log(this.paymentBlock.getFormValues());
     console.log(this.laborPaymentBlock.getFormValues());
+    this.paymentService.savePaymentDetails("").subscribe(
+      res => {
+
+      }
+    )
   }
 }

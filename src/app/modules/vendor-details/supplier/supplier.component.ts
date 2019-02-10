@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { DetailsGenericComponent } from "../details-generic/details-generic.component";
 import { BankAccountsDetailsComponent } from "src/app/shared/components/bank-accounts-details/bank-accounts-details.component";
 import { VendorService } from "../shared/vendor.service";
+import { BankService } from 'src/app/shared/services/bank/bank.service';
 
 @Component({
   selector: "app-supplier",
@@ -17,9 +18,9 @@ export class SupplierComponent implements OnInit {
   @ViewChild(DetailsGenericComponent) generic: DetailsGenericComponent;
   @ViewChild(BankAccountsDetailsComponent)
   bankDetails: BankAccountsDetailsComponent;
-  constructor(private vendorservice: VendorService) {}
+  constructor(private vendorservice: VendorService, private bankservice: BankService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   saveSupplierDetails() {
     // console.log(this.bankDetails);
@@ -27,6 +28,11 @@ export class SupplierComponent implements OnInit {
       .saveSupplier(this.generic.getFormValues())
       .subscribe(res => {
         console.log(res);
+        this.bankservice.saveBankData(this.bankDetails.getFormValues()).subscribe(
+          res => {
+            console.log(res);
+          }
+        )
       });
   }
 }

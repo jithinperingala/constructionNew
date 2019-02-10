@@ -6,8 +6,8 @@ import { Pathgenerator } from "src/app/core/services/ajax/pathgenerator";
   providedIn: "root"
 })
 export class BankService {
-  constructor(private http: AjaxService, private pathGen: Pathgenerator) {}
+  constructor(private http: AjaxService, private pathGen: Pathgenerator) { }
   saveBankData(data) {
-    return this.http._post(this.pathGen);
+    return this.http._post(this.pathGen.saveBankDetails, data);
   }
 }

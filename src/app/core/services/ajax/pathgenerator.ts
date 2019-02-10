@@ -36,7 +36,7 @@ export class Pathgenerator {
 
     saveVendorDetails: "vendor/supplier",
 
-    saveBankDetails: "accounts/bank/"
+    saveBankDetails: "accounts/bank"
   };
 
   private generatePath(uri): string {
@@ -110,5 +110,8 @@ export class Pathgenerator {
   }
   get saveVendorDetails() {
     return this.generatePath(this.uriCollection.saveVendorDetails);
+  }
+  get saveBankDetails() {
+    return this.generatePath(this.uriCollection.saveBankDetails);
   }
 }
