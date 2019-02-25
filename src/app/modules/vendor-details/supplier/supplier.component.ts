@@ -18,7 +18,7 @@ export class SupplierComponent implements OnInit {
   @ViewChild(DetailsGenericComponent) generic: DetailsGenericComponent;
   @ViewChild(BankAccountsDetailsComponent)
   bankDetails: BankAccountsDetailsComponent;
-  constructor(private vendorservice: VendorService, private bankservice: BankService) { }
+  constructor(private vendorservice: VendorService) { }
 
   ngOnInit() { }
 

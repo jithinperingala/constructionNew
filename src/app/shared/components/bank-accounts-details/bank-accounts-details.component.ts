@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms'
 import { BankService } from '../../services/bank/bank.service';
+import * as _ from 'underscore'
 @Component({
   selector: 'app-bank-accounts-details',
   templateUrl: './bank-accounts-details.component.html',
@@ -11,6 +12,7 @@ export class BankAccountsDetailsComponent implements OnInit {
 
   bankForm: FormGroup;
   BANK_DATA: Bank[] = [];
+  bankAccountNo = 0
   constructor(private fb: FormBuilder, private BankService: BankService) {
 
   }
@@ -25,15 +27,18 @@ export class BankAccountsDetailsComponent implements OnInit {
   }
   addNewBank(data) {
     this.BANK_DATA.push({
-      id: this.BANK_DATA.length + 1,
+      id: this.bankAccountNo++,
       name: data.name,
       accNo: data.accNo,
       branch: data.branch,
       ifsc: data.ifsc,
     })
+    this.bankForm.reset();
   }
   removeBank(id) {
-    this.BANK_DATA.splice(id - 1, 1)
+    this.BANK_DATA = _.reject(this.BANK_DATA, (res) => {
+      return res.id == id
+    })
   }
   getFormValues() {
     return this.BANK_DATA

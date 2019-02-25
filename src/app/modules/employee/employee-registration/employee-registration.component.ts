@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild,OnDestroy } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
@@ -7,13 +7,14 @@ import { ActivatedRoute } from '@angular/router';
 import { NavigateService } from 'src/app/core/services/navigation/navigate.service';
 import { EmployeeService } from 'src/app/modules/employee/shared/employee.service';
 import { NotifyService } from 'src/app/core/services/notification/notify.service';
+import { BankAccountsDetailsComponent } from 'src/app/shared/components/bank-accounts-details/bank-accounts-details.component';
 
 @Component({
   selector: 'app-emp-reg',
   templateUrl: './employee-registration.component.html',
   styleUrls: ['./employee-registration.component.scss']
 })
-export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
+export class EmployeeRegistrationComponent implements OnInit, OnDestroy {
 
   cardForm: FormGroup;
   empNameEdit;
@@ -21,9 +22,10 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
   isFormValid
   //public uploader: FileUploader = new FileUploader({ url: config._baseURL, itemAlias: 'photo' });
 
-   @ViewChild("video")
-   public video: ElementRef;
-
+  @ViewChild("video")
+  public video: ElementRef;
+  @ViewChild(BankAccountsDetailsComponent)
+  bankDetails: BankAccountsDetailsComponent;
   @ViewChild("canvas")
   public canvas: ElementRef;
 
@@ -34,8 +36,8 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
     contactno: '',
     dob: '',
     gender: '',
-    address:'',
-    aadarNumber:''
+    address: '',
+    aadarNumber: ''
 
   };
 
@@ -56,7 +58,7 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
     },
     gender: {
       'required': 'Gender is required'
-    }, 
+    },
     address: {
       'required': 'Address is required'
     },
@@ -74,10 +76,10 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
       insuranceNumber: [''],
       address: ['', Validators.required],
       fileupload: [''],
-      contactno: ['', [Validators.required,Validators.minLength(10)]],
+      contactno: ['', [Validators.required, Validators.minLength(10)]],
       email: [''],
       officialNumber: [''],
-      dob: ['',Validators.required],
+      dob: ['', Validators.required],
       gender: [''],
       contactPerson: [''],
       contactPersonMobile: [''],
@@ -86,20 +88,20 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
       salaryAmount: ["0"]
     });
     this.cardForm.valueChanges.subscribe((data) => {
-        
-      for (let field in this.formErrors) {
-          this.formErrors[field] = '';
-          let input = this.cardForm.get(field);
 
-          if (input.invalid) {
-              for (let err in input.errors) {
-                  this.formErrors[field] = this.validationMessages[field][err];
-              }
+      for (let field in this.formErrors) {
+        this.formErrors[field] = '';
+        let input = this.cardForm.get(field);
+
+        if (input.invalid) {
+          for (let err in input.errors) {
+            this.formErrors[field] = this.validationMessages[field][err];
           }
+        }
       }
 
       this.isFormValid = this.cardForm.valid;
-  });
+    });
 
     this.EmployeeService.getEmployeeType().subscribe(res => {
       console.log("app-emp-reg", res)
@@ -139,24 +141,24 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
       })
     }
   }
-  video1 
+  video1
   public ngAfterViewInit() {
     // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     //   navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
     //     this.video.nativeElement.src = window.URL.createObjectURL(stream);
-        
+
     //   });
     // }
-   let self=this
-   this.video1= document.getElementById('video');
+    let self = this
+    this.video1 = document.getElementById('video');
     navigator.mediaDevices.getUserMedia({
-        video: true
-      })
-      .then(function(stream) {
+      video: true
+    })
+      .then(function (stream) {
         self.video1['srcObject'] = stream;
-      
+
       })
-      .catch(function() {
+      .catch(function () {
         console.log('error');
       });
   }
@@ -192,7 +194,7 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
       this.EmployeeService.saveBlob(this.captures[0], empid)
   }
   SaveData(data) {
-    console.log("this.searchId",this.searchId)
+    console.log("this.searchId", this.searchId)
     if (this.searchId) {
       data.employee_id = this.searchId
       data.createUpdate = "1"
@@ -209,26 +211,31 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
     }
     else {
       data.createUpdate = "0"
-     this.EmployeeService.createUpdateEmployee(data).subscribe(res => {
-        console.log("else entered", )
+      this.EmployeeService.createUpdateEmployee(data).subscribe(res => {
+        console.log("else entered")
         // this.upload('canvas', res[0][0]['employeeId']);
-        if(res){
+        if (res) {
           this.uploadImg(res[0][0]['employeeId'])
           this.upload('photo', res[0][0]['employeeId']);
           this.upload('aadar', res[0][0]['employeeId'])
           this.upload('insurance', res[0][0]['employeeId'])
+          this.bankDetails.saveBankDetails(res[0][0]['employeeId'], 'E').subscribe(
+            res => {
+              console.log("resss", res)
+            }
+          )
           this.NotifyService._sucessMessage()
           // this.navigate._navigate('')
           this.cardForm.reset()
           this.clearFiles()
         }
-     
+
       })
-      
+
     }
   }
-  clearFiles(){
-    this.captures=[]
+  clearFiles() {
+    this.captures = []
     this.cardForm.controls.gender.setValue("0")
     this.cardForm.controls.wagesType.setValue(0)
     this.cardForm.controls.empType.setValue(1)
@@ -240,7 +247,7 @@ export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
     let inputE3: HTMLInputElement = this.el.nativeElement.querySelector('#insurance');
     inputE3.value = null
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     navigator.mediaDevices.getUserMedia({
       audio: false,
       video: true
