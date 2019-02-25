@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";
+import { PaymentService } from '../shared/payment.service';
 
 @Component({
   selector: "app-pettycashbook",
@@ -8,7 +9,7 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 })
 export class PettycashbookComponent implements OnInit {
   pettyCashBook: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private paymentservice: PaymentService) { }
   headerText = {
     cardTitle: "pettycashbook",
     subTitle: "pettycashbook",
@@ -26,5 +27,10 @@ export class PettycashbookComponent implements OnInit {
   }
   saveFormData(formData) {
     console.log(formData);
+    this.paymentservice.savePettyCashBook(formData).subscribe(
+      res => {
+        console.log(res);
+      }
+    )
   }
 }

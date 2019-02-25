@@ -27,10 +27,10 @@ export class SupplierComponent implements OnInit {
     this.vendorservice
       .saveSupplier(this.generic.getFormValues())
       .subscribe(res => {
-        console.log(res);
-        this.bankservice.saveBankData(this.bankDetails.getFormValues()).subscribe(
+        console.log("supppliersaved", res[0][0]['last_insert_id()']);
+        this.bankDetails.saveBankDetails(res[0][0]['last_insert_id()'], 'S').subscribe(
           res => {
-            console.log(res);
+            console.log("resss", res)
           }
         )
       });

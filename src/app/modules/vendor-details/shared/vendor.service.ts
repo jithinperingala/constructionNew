@@ -6,10 +6,14 @@ import { Pathgenerator } from "src/app/core/services/ajax/pathgenerator";
   providedIn: "root"
 })
 export class VendorService {
-  constructor(private http: AjaxService, private pathgen: Pathgenerator) {}
+  constructor(private http: AjaxService, private pathgen: Pathgenerator) { }
 
   saveSupplier(data) {
     data["createUpdate"] = 0;
-    return this.http._post(this.pathgen.saveVendorDetails, data);
+    return this.http._post(this.pathgen.saveSupplierDetails, data);
+  }
+  saveContractor(data) {
+    data["createUpdate"] = 0;
+    return this.http._post(this.pathgen.saveContractorDetails, data);
   }
 }

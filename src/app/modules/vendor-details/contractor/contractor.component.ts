@@ -24,12 +24,12 @@ export class ContractorComponent implements OnInit {
     this.genericComp.getFormValues();
     this.bankDetails.getFormValues();
     this.vendorservice
-      .saveSupplier(this.genericComp.getFormValues())
+      .saveContractor(this.genericComp.getFormValues())
       .subscribe(res => {
-        console.log(res);
-        this.bankservice.saveBankData(this.bankDetails.getFormValues()).subscribe(
+        console.log("contractorDetails", res);
+        this.bankDetails.saveBankDetails(res[0][0]['last_insert_id()'], 'C').subscribe(
           res => {
-            console.log(res);
+            console.log(res)
           }
         )
       });

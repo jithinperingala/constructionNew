@@ -7,12 +7,15 @@ import { BankAccountsDetailsComponent } from './components/bank-accounts-details
 import { CardHeaderComponent } from './components/card-header/card-header.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SiteDropDownComponent } from './components/site-drop-down/site-drop-down.component';
+import { FromAccountDropdownComponent } from './components/from-account-dropdown/from-account-dropdown.component';
+import { ToAccountDropdownComponent } from './components/to-account-dropdown/to-account-dropdown.component';
 
 @NgModule({
   imports: [
-    MeterialModule,CommonModule,ReactiveFormsModule,FormsModule
+    MeterialModule, CommonModule, ReactiveFormsModule, FormsModule
   ],
-  exports:[OrderbyPipe,BankAccountsDetailsComponent,CardHeaderComponent],
-  declarations: [ OrderbyPipe, BankAccountsDetailsComponent, CardHeaderComponent,]
+  exports: [OrderbyPipe, BankAccountsDetailsComponent, CardHeaderComponent, SiteDropDownComponent, FromAccountDropdownComponent, ToAccountDropdownComponent],
+  declarations: [OrderbyPipe, BankAccountsDetailsComponent, CardHeaderComponent, SiteDropDownComponent, FromAccountDropdownComponent, ToAccountDropdownComponent,]
 })
 export class SharedModule { }

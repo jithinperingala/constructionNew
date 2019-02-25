@@ -31,10 +31,10 @@ export class Pathgenerator {
     EmployeePaymentReport: "employee/paymentReport",
 
     Report_EmployeeFullAttendence: "reports/employees/attendence",
-    Report_EmployeeAttendenceBySite:
-      "reports/employees/attendence/attendenceByEmployee",
+    Report_EmployeeAttendenceBySite: "reports/employees/attendence/attendenceByEmployee",
 
-    saveVendorDetails: "vendor/supplier",
+    saveSupplierDetails: "vendor/supplier",
+    saveContractorDetails: "vendor/contractor",
 
     saveBankDetails: "accounts/bank"
   };
@@ -108,8 +108,11 @@ export class Pathgenerator {
       this.uriCollection.Report_EmployeeAttendenceBySite
     );
   }
-  get saveVendorDetails() {
-    return this.generatePath(this.uriCollection.saveVendorDetails);
+  get saveSupplierDetails() {
+    return this.generatePath(this.uriCollection.saveSupplierDetails);
+  }
+  get saveContractorDetails() {
+    return this.generatePath(this.uriCollection.saveContractorDetails);
   }
   get saveBankDetails() {
     return this.generatePath(this.uriCollection.saveBankDetails);

@@ -5,15 +5,10 @@ import { Pathgenerator } from 'src/app/core/services/ajax/pathgenerator';
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentService {
+export class SiteDetailsService {
 
   constructor(private http: AjaxService, private pathgen: Pathgenerator) { }
-
-  savePaymentDetails(data) {
-    return this.http._post("", data)
-  }
-
-  savePettyCashBook(data) {
-    return this.http._post("", data)
+  getSiteDetails() {
+    return this.http._get(this.pathgen.getSiteDetails);
   }
 }

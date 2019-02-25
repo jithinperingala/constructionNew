@@ -1,32 +1,15 @@
 <app-card-header [headerText]="headerText"></app-card-header>
 <mat-card class="contentMargin">
-  <form
-    class="example-form"
-    [formGroup]="pettyCashBook"
-    (ngSubmit)="saveFormData(pettyCashBook.value)"
-  >
+  <form class="example-form" [formGroup]="pettyCashBook" (ngSubmit)="saveFormData(pettyCashBook.value)">
     <div class="example-container">
       <div class="flex-inner-container">
         <div style="flex-grow: 7;margin-right: 10px;">
-          <mat-form-field>
-            <mat-select placeholder="Select Site" formControlName="siteId">
-              <mat-option value="site1">site1</mat-option>
-              <mat-option value="site2">site2</mat-option>
-            </mat-select>
-          </mat-form-field>
+          <app-site-drop-down></app-site-drop-down>
         </div>
         <div style="flex-grow: 6">
           <mat-form-field>
-            <input
-              matInput
-              [matDatepicker]="picker"
-              placeholder="Date"
-              formControlName="date"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
+            <input matInput [matDatepicker]="picker" placeholder="Date" formControlName="date" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
@@ -49,11 +32,7 @@
         </div>
         <div style="flex-grow: 6">
           <mat-form-field>
-            <input
-              matInput
-              placeholder="Description"
-              formControlName="description"
-            />
+            <input matInput placeholder="Description" formControlName="description" />
           </mat-form-field>
         </div>
       </div>
