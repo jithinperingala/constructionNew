@@ -2,16 +2,16 @@
   <div style="flex-grow: 6;margin-right: 10px;">
     <mat-form-field>
       <mat-select placeholder="From">
-        <mat-option value="option">ravi</mat-option>
-        <mat-option value="option">ramu</mat-option>
+        <mat-option *ngFor="let fromUser of fromUsers" value="fromUser.Uid">{{fromUser.Uname}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
   <div style="flex-grow: 6">
     <mat-form-field>
       <mat-select placeholder="From A/C">
-        <mat-option value="option">A234234</mat-option>
-        <mat-option value="option">icefsdgfsdgd</mat-option>
+        <mat-option *ngFor="let account of accountsDetails" value="account.id_bank_accounts">
+          {{account.bank_name}}-{{account.account_number}}</mat-option>
+
       </mat-select>
     </mat-form-field>
   </div>

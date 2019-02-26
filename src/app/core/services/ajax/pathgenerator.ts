@@ -36,7 +36,13 @@ export class Pathgenerator {
     saveSupplierDetails: "vendor/supplier",
     saveContractorDetails: "vendor/contractor",
 
-    saveBankDetails: "accounts/bank"
+    saveBankDetails: "accounts/bank",
+
+    getFromUser: "accounts/from/fromUser",
+    getToUser: "accounts/from/toUser",
+
+    getAccountDetails: "accounts/bank/bankAccountDetails",
+
   };
 
   private generatePath(uri): string {
@@ -116,5 +122,14 @@ export class Pathgenerator {
   }
   get saveBankDetails() {
     return this.generatePath(this.uriCollection.saveBankDetails);
+  }
+  get getFromUser() {
+    return this.generatePath(this.uriCollection.getFromUser);
+  }
+  get getToUser() {
+    return this.generatePath(this.uriCollection.getToUser);
+  }
+  get getAccountDetails() {
+    return this.generatePath(this.uriCollection.getAccountDetails);
   }
 }
