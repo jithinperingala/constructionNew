@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SiteDetailsService } from '../../services/site/site-details.service';
 
 @Component({
@@ -11,6 +11,7 @@ export class SiteDropDownComponent implements OnInit {
   siteData
   workSites
   workSite
+  @Output() getSite = new EventEmitter;
   constructor(private siteDetailsService: SiteDetailsService) {
     this.siteData = this.siteDetailsService.getSiteDetails()
     this.siteData.subscribe(res => {
@@ -18,8 +19,12 @@ export class SiteDropDownComponent implements OnInit {
       this.workSites = res[0]
       this.workSite = 1
     })
+
   }
 
+  selectionChanged(val) {
+    this.getSite.emit(val)
+  }
   ngOnInit() {
   }
 

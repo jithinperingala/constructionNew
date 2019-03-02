@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FromToService } from '../../services/accounts/from-to.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-to-account-dropdown',
@@ -8,13 +9,21 @@ import { FromToService } from '../../services/accounts/from-to.service';
 })
 export class ToAccountDropdownComponent implements OnInit {
 
-  constructor(private fromService: FromToService) { }
+  constructor(private fromService: FromToService, private fb: FormBuilder) { }
 
   toUsers
   accountsDetails
+  toForm: FormGroup;
   ngOnInit() {
+    this.toForm = this.fb.group({
+      to: ["", []],
+      toAccount: ["", []],
+    });
     this.getToData();
     this.getFromUserAccounts();
+  }
+  getFormValues() {
+    return this.toForm.value
   }
   getToData() {
     this.fromService.getToData(44, 'e').subscribe(

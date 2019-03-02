@@ -3,7 +3,7 @@
     <div class="example-container">
       <div class="flex-inner-container">
         <div style="flex-grow: 7;margin-right: 10px;">
-          <app-site-drop-down></app-site-drop-down>
+          <app-site-drop-down (getSite)=selectedSiteDetails($event)></app-site-drop-down>
         </div>
         <div style="flex-grow: 6">
           <mat-form-field>
@@ -27,9 +27,9 @@
       </div>
       <div class="flex-inner-container">
         <div style="flex-grow: 6;">
-          <mat-radio-group class="example-radio-group" name="favoriteSeason" formControlName="cachTransferMode">
-            <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-              {{ season }}
+          <mat-radio-group class="example-radio-group" name="mode" formControlName="cachTransferMode">
+            <mat-radio-button class="example-radio-button" *ngFor="let mode of TransactionMode" [value]="mode.id">
+              {{ mode.type }}
             </mat-radio-button>
           </mat-radio-group>
         </div>
@@ -42,16 +42,6 @@
       <div class="flex-inner-container">
         <div style="flex-grow: 10;">
           <app-to-account-dropdown></app-to-account-dropdown>
-        </div>
-      </div>
-      <div class="flex-inner-container" [hidden]="favoriteSeason != 'Bank'">
-        <div style="flex-grow: 7">
-          <mat-form-field>
-            <mat-select placeholder="Select A/c" formControlName="bankId">
-              <mat-option value="option">2534223425</mat-option>
-              <mat-option value="option">1232423534</mat-option>
-            </mat-select>
-          </mat-form-field>
         </div>
       </div>
       <div class="flex-inner-container">

@@ -1,18 +1,19 @@
-<div class="flex-inner-container">
-  <div style="flex-grow: 6;margin-right: 10px;">
-    <mat-form-field>
-      <mat-select placeholder="To">
-        <mat-option *ngFor="let toUser of toUsers" value="fromUser.Uid">{{toUser.Uname}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+<form [formGroup]="toForm">
+  <div class="flex-inner-container">
+    <div style="flex-grow: 6;margin-right: 10px;">
+      <mat-form-field>
+        <mat-select placeholder="To" formControlName="to">
+          <mat-option *ngFor="let toUser of toUsers" value="{{toUser.Uid}}">{{toUser.Uname}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div style="flex-grow: 6">
+      <mat-form-field>
+        <mat-select placeholder="To A/C" formControlName="toAccount">
+          <mat-option *ngFor="let account of accountsDetails" value="{{account.id_bank_accounts}}">
+            {{account.bank_name}}-{{account.account_number}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
-  <div style="flex-grow: 6">
-    <mat-form-field>
-      <mat-select placeholder="To A/C">
-        <mat-option *ngFor="let account of accountsDetails" value="account.id_bank_accounts">
-          {{account.bank_name}}-{{account.account_number}}</mat-option>
-
-      </mat-select>
-    </mat-form-field>
-  </div>
-</div>
+</form>

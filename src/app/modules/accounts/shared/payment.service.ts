@@ -10,7 +10,7 @@ export class PaymentService {
   constructor(private http: AjaxService, private pathgen: Pathgenerator) { }
 
   savePaymentDetails(data) {
-    return this.http._post("", data)
+    return this.http._post(this.pathgen.savePaymentDetails, data)
   }
 
   savePettyCashBook(data) {

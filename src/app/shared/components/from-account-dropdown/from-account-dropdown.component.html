@@ -1,18 +1,22 @@
-<div class="flex-inner-container">
-  <div style="flex-grow: 6;margin-right: 10px;">
-    <mat-form-field>
-      <mat-select placeholder="From">
-        <mat-option *ngFor="let fromUser of fromUsers" value="fromUser.Uid">{{fromUser.Uname}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div style="flex-grow: 6">
-    <mat-form-field>
-      <mat-select placeholder="From A/C">
-        <mat-option *ngFor="let account of accountsDetails" value="account.id_bank_accounts">
-          {{account.bank_name}}-{{account.account_number}}</mat-option>
+<form [formGroup]="fromForm">
 
-      </mat-select>
-    </mat-form-field>
+
+  <div class="flex-inner-container">
+    <div style="flex-grow: 6;margin-right: 10px;">
+      <mat-form-field>
+        <mat-select placeholder="From" formControlName="from">
+          <mat-option *ngFor="let fromUser of fromUsers" value="{{fromUser.Uid}}">{{fromUser.Uname}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div style="flex-grow: 6">
+      <mat-form-field>
+        <mat-select placeholder="From A/C" formControlName="fromAccount">
+          <mat-option *ngFor="let account of accountsDetails" value="{{account.id_bank_accounts}}">
+            {{account.bank_name}}-{{account.account_number}}</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
-</div>
+</form>
