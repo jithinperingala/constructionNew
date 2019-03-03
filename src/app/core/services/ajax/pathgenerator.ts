@@ -42,7 +42,8 @@ export class Pathgenerator {
     getToUser: "accounts/from/toUser",
 
     getAccountDetails: "accounts/bank/bankAccountDetails",
-    savePaymentDetails: "accounts/payments/savePayment"
+    savePaymentDetails: "accounts/payments/savePayment",
+    savePettyCashDetails: "accounts/payments/savepettyCashPayment"
 
   };
 
@@ -135,5 +136,8 @@ export class Pathgenerator {
   }
   get savePaymentDetails() {
     return this.generatePath(this.uriCollection.savePaymentDetails);
+  }
+  get savePettyCashDetails() {
+    return this.generatePath(this.uriCollection.savePettyCashDetails);
   }
 }

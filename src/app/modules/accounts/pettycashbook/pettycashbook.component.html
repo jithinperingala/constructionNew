@@ -4,7 +4,7 @@
     <div class="example-container">
       <div class="flex-inner-container">
         <div style="flex-grow: 7;margin-right: 10px;">
-          <app-site-drop-down></app-site-drop-down>
+          <app-site-drop-down (getSite)=selectedSiteDetails($event)></app-site-drop-down>
         </div>
         <div style="flex-grow: 6">
           <mat-form-field>

@@ -4,6 +4,7 @@ import { LaborPaymentComponent } from "./labor-payment/labor-payment.component";
 import { PaymentService } from '../shared/payment.service';
 import { FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { NotifyService } from 'src/app/core/services/notification/notify.service';
 
 @Component({
   selector: "app-payment",
@@ -15,7 +16,7 @@ export class PaymentComponent implements OnInit {
   @ViewChild(PaymentBlockComponent) paymentBlock: PaymentBlockComponent;
   @ViewChild(LaborPaymentComponent) laborPaymentBlock: LaborPaymentComponent;
 
-  constructor(private paymentService: PaymentService, private datePipe: DatePipe) { }
+  constructor(private paymentService: PaymentService, private datePipe: DatePipe, private NotifyService: NotifyService) { }
   headerText = {
     cardTitle: "Payment",
     subTitle: "Payment",
@@ -35,13 +36,22 @@ export class PaymentComponent implements OnInit {
   savePaymentDetails() {
 
     console.log(this.paymentBlock.getFormValues());
+
     let Paymentobj = this.paymentBlock.getFormValues();
-    Paymentobj['createUpdate'] = 0
-    Paymentobj.payment.date = this.datePipe.transform(Paymentobj.payment.date, 'yyyy/MM/dd');
-    this.paymentService.savePaymentDetails(Paymentobj).subscribe(
-      res => {
-        console.log(res)
-      }
-    )
+    if (Paymentobj == "Form Invalid") {
+      alert("Enter All Fildes")
+    }
+    else {
+      Paymentobj['createUpdate'] = 0
+      Paymentobj['payment'].date = this.datePipe.transform(Paymentobj['payment'].date, 'yyyy/MM/dd');
+      this.paymentService.savePaymentDetails(Paymentobj).subscribe(
+        res => {
+          console.log(res)
+          this.paymentBlock.clearForm();
+          this.NotifyService._sucessMessage()
+        }
+      )
+    }
+
   }
 }

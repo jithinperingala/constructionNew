@@ -1,15 +1,20 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { PaymentService } from '../shared/payment.service';
+import { FromAccountDropdownComponent } from 'src/app/shared/components/from-account-dropdown/from-account-dropdown.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: "app-pettycashbook",
   templateUrl: "./pettycashbook.component.html",
-  styleUrls: ["./pettycashbook.component.scss"]
+  styleUrls: ["./pettycashbook.component.scss"],
+  providers: [DatePipe]
 })
 export class PettycashbookComponent implements OnInit {
   pettyCashBook: FormGroup;
-  constructor(private fb: FormBuilder, private paymentservice: PaymentService) { }
+  selectedSite
+  @ViewChild(FromAccountDropdownComponent) fromComponent: FromAccountDropdownComponent;
+  constructor(private fb: FormBuilder, private paymentservice: PaymentService, private datePipe: DatePipe) { }
   headerText = {
     cardTitle: "pettycashbook",
     subTitle: "pettycashbook",
@@ -17,20 +22,35 @@ export class PettycashbookComponent implements OnInit {
   };
   ngOnInit() {
     this.pettyCashBook = this.fb.group({
-      siteId: ["", []],
-      date: ["", []],
-      fromId: ["", []],
-      // cachTransferMode: ["Bank", []],
-      amount: ["", []],
+      date: ["", [Validators.required]],
+      amount: ["", [Validators.required]],
       description: ["", []]
     });
   }
+  selectedSiteDetails(val) {
+    this.selectedSite = val.value
+  }
   saveFormData(formData) {
-    console.log(formData);
-    this.paymentservice.savePettyCashBook(formData).subscribe(
-      res => {
-        console.log(res);
+
+    let fromObj = this.fromComponent.getFormValues()
+
+    if (fromObj == "Form Invalid") {
+      alert("Enter All Fildes")
+    } else {
+      let pettyobject = {
+        siteId: this.selectedSite,
+        payment: this.pettyCashBook.value,
+        from: fromObj
+
       }
-    )
+      pettyobject.payment.cachTransferMode = 1;
+      pettyobject['payment'].date = this.datePipe.transform(pettyobject['payment'].date, 'yyyy/MM/dd');
+      this.paymentservice.savePettyCashBook(pettyobject).subscribe(
+        res => {
+          console.log(res);
+        }
+      )
+    }
+
   }
 }

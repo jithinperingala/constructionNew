@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from "@angular/core";
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { FromAccountDropdownComponent } from 'src/app/shared/components/from-account-dropdown/from-account-dropdown.component';
 import { ToAccountDropdownComponent } from 'src/app/shared/components/to-account-dropdown/to-account-dropdown.component';
 
@@ -19,10 +19,10 @@ export class PaymentBlockComponent implements OnInit {
   @Output() typeChange = new EventEmitter();
   ngOnInit() {
     this.paymentBlock = this.fb.group({
-      date: ["", []],
-      paymentType: ["", []],
-      cachTransferMode: ["Bank", []],
-      amount: ["", []],
+      date: ["", [Validators.required]],
+      paymentType: ["", [Validators.required]],
+      cachTransferMode: ["Bank", [Validators.required]],
+      amount: ["", [Validators.required]],
       description: ["", []],
     });
 
@@ -34,11 +34,19 @@ export class PaymentBlockComponent implements OnInit {
     this.selectedSite = val.value
   }
   getFormValues() {
-    return {
-      siteId: this.selectedSite,
-      payment: this.paymentBlock.value,
-      from: this.fromComponent.getFormValues(),
-      to: this.toComponent.getFormValues()
-    };
+    console.log(this.paymentBlock.valid)
+    if (this.paymentBlock.valid)
+      return {
+        siteId: this.selectedSite,
+        payment: this.paymentBlock.value,
+        from: this.fromComponent.getFormValues(),
+        to: this.toComponent.getFormValues()
+      };
+    else {
+      return "Form Invalid"
+    }
+  }
+  clearForm() {
+    this.paymentBlock.reset();
   }
 }

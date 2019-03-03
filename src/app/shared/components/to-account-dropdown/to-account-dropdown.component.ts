@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FromToService } from '../../services/accounts/from-to.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-to-account-dropdown',
@@ -16,14 +16,17 @@ export class ToAccountDropdownComponent implements OnInit {
   toForm: FormGroup;
   ngOnInit() {
     this.toForm = this.fb.group({
-      to: ["", []],
+      to: ["", [Validators.required]],
       toAccount: ["", []],
     });
     this.getToData();
     this.getFromUserAccounts();
   }
   getFormValues() {
-    return this.toForm.value
+    if (this.toForm.invalid)
+      return "Form Invalid"
+    else
+      return this.toForm.value
   }
   getToData() {
     this.fromService.getToData(44, 'e').subscribe(

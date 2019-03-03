@@ -14,6 +14,6 @@ export class PaymentService {
   }
 
   savePettyCashBook(data) {
-    return this.http._post("", data)
+    return this.http._post(this.pathgen.savePettyCashDetails, data)
   }
 }
