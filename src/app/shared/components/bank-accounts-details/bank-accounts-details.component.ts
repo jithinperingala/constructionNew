@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms'
 import { BankService } from '../../services/bank/bank.service';
 import * as _ from 'underscore'
+import { pipe } from 'rxjs';
+import { tap } from 'rxjs/operators';
 @Component({
   selector: 'app-bank-accounts-details',
   templateUrl: './bank-accounts-details.component.html',
@@ -33,6 +35,9 @@ export class BankAccountsDetailsComponent implements OnInit {
       branch: data.branch,
       ifsc: data.ifsc,
     })
+    this.clearBankDetails()
+  }
+  clearBankDetails() {
     this.bankForm.reset();
   }
   removeBank(id) {
@@ -50,7 +55,8 @@ export class BankAccountsDetailsComponent implements OnInit {
       code: code,
       data: this.BANK_DATA
     }
-    return this.BankService.saveBankData(bankObj)
+    return this.BankService.saveBankData(bankObj).pipe(tap(res => { console.log(res) }))
+
   }
 
 }

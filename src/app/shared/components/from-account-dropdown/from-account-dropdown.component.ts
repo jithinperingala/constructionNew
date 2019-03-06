@@ -19,7 +19,6 @@ export class FromAccountDropdownComponent implements OnInit {
       fromAccount: ["", [Validators.required]],
     });
     this.getFromEmployeeDetails()
-    this.getFromUserAccounts()
   }
   getFormValues() {
     if (this.fromForm.invalid)
@@ -35,8 +34,8 @@ export class FromAccountDropdownComponent implements OnInit {
       }
     )
   }
-  getFromUserAccounts() {
-    this.fromService.getAccountData(1, 'C').subscribe(
+  getFromUserAccounts(dta) {
+    this.fromService.getAccountData(dta.value, 'C').subscribe(
       res => {
         console.log(res)
         this.accountsDetails = res[0]

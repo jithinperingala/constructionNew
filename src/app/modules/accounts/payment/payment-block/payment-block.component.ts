@@ -15,7 +15,7 @@ export class PaymentBlockComponent implements OnInit {
   TransactionMode = [{ id: 0, type: "Bank" }, { id: 1, type: "cash" }, { id: 2, type: "check" }];
   paymentBlock: FormGroup;
   selectedSite
-
+  selectedPaymentType
   @Output() typeChange = new EventEmitter();
   ngOnInit() {
     this.paymentBlock = this.fb.group({
@@ -32,6 +32,10 @@ export class PaymentBlockComponent implements OnInit {
   }
   selectedSiteDetails(val) {
     this.selectedSite = val.value
+  }
+  selectPaymentType(data) {
+    console.log(data)
+    this.selectedPaymentType = data.value
   }
   getFormValues() {
     console.log(this.paymentBlock.valid)

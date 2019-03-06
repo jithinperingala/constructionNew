@@ -30,6 +30,8 @@ export class ContractorComponent implements OnInit {
         this.bankDetails.saveBankDetails(res[0][0]['last_insert_id()'], 'C').subscribe(
           res => {
             console.log(res)
+            this.genericComp.clearFormData()
+            this.bankDetails.clearBankDetails();
           }
         )
       });

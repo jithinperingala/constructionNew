@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./details-generic.component.scss']
 })
 export class DetailsGenericComponent implements OnInit {
-  userForm:FormGroup
+  userForm: FormGroup
   constructor(private formBuilder: FormBuilder) {
     this.userForm = this.formBuilder.group({
       'name': [''],
@@ -15,13 +15,16 @@ export class DetailsGenericComponent implements OnInit {
       'contactNo': [''],
       'mobile': [''],
       'email': [''],
-      'contactPerson':['']
+      'contactPerson': ['']
     });
-   }
+  }
 
   ngOnInit() {
   }
-  getFormValues(){
+  getFormValues() {
     return this.userForm.value
+  }
+  clearFormData() {
+    this.userForm.reset();
   }
 }

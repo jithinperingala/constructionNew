@@ -12,10 +12,11 @@ import {
 import { Observable, throwError } from "rxjs";
 import { map, catchError } from "rxjs/operators";
 import { UserService } from "src/app/shared/services/user/user.service";
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({ providedIn: "root" })
 export class HttpConfigInterceptor implements HttpInterceptor {
-  constructor(private loggedUser: UserService) {}
+  constructor(private loggedUser: UserService, private spinner: NgxSpinnerService) { }
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
@@ -60,6 +61,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         };
         // this.errorDialogService.openDialog(data);
         console.log("error from http inter", error);
+        this.spinner.hide();
         return throwError(error);
       })
     );

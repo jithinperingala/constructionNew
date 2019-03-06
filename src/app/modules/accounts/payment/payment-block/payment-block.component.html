@@ -16,11 +16,12 @@
       <div class="flex-inner-container">
         <div style="flex-grow: 10;">
           <mat-form-field>
-            <mat-select placeholder="Select Payment Type" formControlName="paymentType">
-              <mat-option value="fundTransfer">Fund Transfer</mat-option>
+            <mat-select placeholder="Select Payment Type" formControlName="paymentType"
+              (selectionChange)="selectPaymentType($event)">
+              <mat-option value="E">Fund Transfer</mat-option>
               <!-- <mat-option value="laborPayment">labour Payment</mat-option> -->
-              <mat-option value="contractor">contractor</mat-option>
-              <mat-option value="Supplier">Supplier</mat-option>
+              <mat-option value="C">contractor</mat-option>
+              <mat-option value="S">Supplier</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -41,7 +42,7 @@
       </div>
       <div class="flex-inner-container">
         <div style="flex-grow: 10;">
-          <app-to-account-dropdown></app-to-account-dropdown>
+          <app-to-account-dropdown [selectedPaymentType]="selectedPaymentType"></app-to-account-dropdown>
         </div>
       </div>
       <div class="flex-inner-container">

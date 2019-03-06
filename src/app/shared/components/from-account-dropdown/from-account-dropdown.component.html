@@ -4,7 +4,7 @@
   <div class="flex-inner-container">
     <div style="flex-grow: 6;margin-right: 10px;">
       <mat-form-field>
-        <mat-select placeholder="From" formControlName="from">
+        <mat-select placeholder="From" formControlName="from" (selectionChange)="getFromUserAccounts($event)">
           <mat-option *ngFor="let fromUser of fromUsers" value="{{fromUser.Uid}}">{{fromUser.Uname}}</mat-option>
         </mat-select>
       </mat-form-field>

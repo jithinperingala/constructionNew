@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Response } from "@angular/http";
 import { Observable, of } from "rxjs";
-import { map, catchError, tap } from "rxjs/operators";
+import { map, catchError, tap, timeout } from "rxjs/operators";
 import { NotifyService } from "../notification/notify.service";
 import { Environment } from "../ajax/environment";
 import { HttpClient, HttpResponse } from "@angular/common/http";
@@ -14,7 +14,7 @@ export class AjaxService {
     private http: HttpClient,
     private notifyService: NotifyService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) { }
 
   _get(url: string): Observable<any> {
     this.spinner.show();
@@ -38,6 +38,10 @@ export class AjaxService {
   }
   _post(url: string, obj: object): Observable<any> {
     this.spinner.show();
+    let self = this
+    setTimeout(function () {
+      self.spinner.hide();
+    }, 3500)
     return this.http
       .post(url, obj)
       .pipe(

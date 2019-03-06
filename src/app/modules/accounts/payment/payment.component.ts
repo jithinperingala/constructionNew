@@ -26,8 +26,7 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit() { }
   paymentTypeChanged(data) {
-    console.log("dfsdf", data);
-    if (data == "laborPayment") {
+    if (data == "L") {
       this.laborPayment = true;
     } else {
       this.laborPayment = false;

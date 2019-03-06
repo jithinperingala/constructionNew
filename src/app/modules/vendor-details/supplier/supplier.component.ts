@@ -31,6 +31,8 @@ export class SupplierComponent implements OnInit {
         this.bankDetails.saveBankDetails(res[0][0]['last_insert_id()'], 'S').subscribe(
           res => {
             console.log("resss", res)
+            this.generic.clearFormData()
+            this.bankDetails.clearBankDetails();
           }
         )
       });
