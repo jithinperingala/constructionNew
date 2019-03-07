@@ -39,9 +39,7 @@ export class AjaxService {
   _post(url: string, obj: object): Observable<any> {
     this.spinner.show();
     let self = this
-    setTimeout(function () {
-      self.spinner.hide();
-    }, 3500)
+    self.spinner.hide();
     return this.http
       .post(url, obj)
       .pipe(

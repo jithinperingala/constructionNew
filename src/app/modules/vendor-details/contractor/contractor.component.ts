@@ -3,6 +3,7 @@ import { DetailsGenericComponent } from "../details-generic/details-generic.comp
 import { BankAccountsDetailsComponent } from "src/app/shared/components/bank-accounts-details/bank-accounts-details.component";
 import { VendorService } from '../shared/vendor.service';
 import { BankService } from 'src/app/shared/services/bank/bank.service';
+import { NotifyService } from 'src/app/core/services/notification/notify.service';
 
 @Component({
   selector: "app-contractor",
@@ -18,23 +19,27 @@ export class ContractorComponent implements OnInit {
   @ViewChild(DetailsGenericComponent) genericComp: DetailsGenericComponent;
   @ViewChild(BankAccountsDetailsComponent)
   bankDetails: BankAccountsDetailsComponent;
-  constructor(private vendorservice: VendorService, private bankservice: BankService) { }
+  constructor(private vendorservice: VendorService, private bankservice: BankService, private NotifyService: NotifyService) { }
   ngOnInit() { }
   saveDataOnClick() {
     this.genericComp.getFormValues();
     this.bankDetails.getFormValues();
-    this.vendorservice
-      .saveContractor(this.genericComp.getFormValues())
-      .subscribe(res => {
-        console.log("contractorDetails", res);
-        this.bankDetails.saveBankDetails(res[0][0]['last_insert_id()'], 'C').subscribe(
-          res => {
-            console.log(res)
-            this.genericComp.clearFormData()
-            this.bankDetails.clearBankDetails();
-          }
-        )
-      });
+    if (this.genericComp.getFormValues() != false) {
+      this.vendorservice
+        .saveContractor(this.genericComp.getFormValues())
+        .subscribe(res => {
+          console.log("contractorDetails", res);
+          this.bankDetails.saveBankDetails(res[0][0]['last_insert_id()'], 'C').subscribe(
+            res => {
+              console.log(res)
+              this.genericComp.clearFormData()
+              this.bankDetails.clearBankDetails();
+              this.bankDetails.clearBankData();
+              this.NotifyService._sucessMessage();
+            }
+          )
+        });
+    }
   }
 
 }
