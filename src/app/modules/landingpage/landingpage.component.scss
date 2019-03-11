@@ -9,5 +9,8 @@
 }
 .example-sidenav-container{
   overflow: auto;
+  min-height: 127%;
+  position: absolute;
+  width: 100%;
 
 }

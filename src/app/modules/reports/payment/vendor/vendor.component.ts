@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { VendorService } from '../shared/vendor.service';
 
 @Component({
   selector: 'app-vendor',
@@ -6,32 +7,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vendor.component.scss']
 })
 export class VendorComponent implements OnInit {
-  headerText=  {
-    cardTitle:'vendor Payment Details',
-    subTitle:'vendor',
-    path:'home/vendor'
+  headerText = {
+    cardTitle: 'vendor Payment Details',
+    subTitle: 'vendor',
+    path: 'home/vendor'
   }
   ELEMENT_DATA = [
-    {position: new Date(), name: 'Hydrogen', weight: 1.0079, symbol: 1.0079},
-    {position: new Date(), name: 'Helium', weight: 4.0026, symbol: 1.0079},
-    {position: new Date(), name: 'Lithium', weight: 6.941, symbol: 1.0079},
-    {position: new Date(), name: 'Beryllium', weight: 9.0122, symbol: 1.0079},
-    {position: new Date(), name: 'Boron', weight: 10.811, symbol: 1.0079},
-    {position: new Date(), name: 'Carbon', weight: 12.0107, symbol: 1.0079},
-    {position: new Date(), name: 'Nitrogen', weight: 14.0067, symbol: 1.0079},
-    {position: new Date(), name: 'Oxygen', weight: 15.9994, symbol: 1.0079},
-    {position: new Date(), name: 'Fluorine', weight: 18.9984, symbol: 1.0079},
-    {position: new Date(), name: 'Neon', weight: 20.1797, symbol: 1.0079},
+    { position: new Date(), name: 'Neon', weight: 20.1797, symbol: 1.0079 },
   ];
-  displayedColumns = ['Date', 'particulars', 'credit', 'debit'];
+  displayedColumns = ['Date', 'From', 'To', 'Mode', 'Amount', 'Remark'];
   dataSource = this.ELEMENT_DATA;
-  constructor() { 
-    
+  constructor(private vendorservice: VendorService) {
+
   }
 
-  
+
 
   ngOnInit() {
+    this.vendorservice.getcontractorReport().subscribe(
+      res => {
+        console.log("res", res[0])
+        this.dataSource = res[0]
+        // res[0].map(item => {
+        //   console.log("item", item)
+        //   this.ELEMENT_DATA.push(res[0][0])
+        // })
+      }
+    )
+    this.vendorservice.getsupplierReport().subscribe(
+      res => {
+        console.log(res)
+      }
+    )
   }
 
 }

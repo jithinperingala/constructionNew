@@ -32,6 +32,8 @@ export class Pathgenerator {
 
     Report_EmployeeFullAttendence: "reports/employees/attendence",
     Report_EmployeeAttendenceBySite: "reports/employees/attendence/attendenceByEmployee",
+    Report_contractorAccounts: "reports/accounts/vendor/getContractorAccounts",
+    Report_supplierAccounts: "reports/accounts/vendor/getSupplierAccounts",
 
     saveSupplierDetails: "vendor/supplier",
     saveContractorDetails: "vendor/contractor",
@@ -139,5 +141,11 @@ export class Pathgenerator {
   }
   get savePettyCashDetails() {
     return this.generatePath(this.uriCollection.savePettyCashDetails);
+  }
+  get Report_contractorAccounts() {
+    return this.generatePath(this.uriCollection.Report_contractorAccounts);
+  }
+  get Report_supplierAccounts() {
+    return this.generatePath(this.uriCollection.Report_supplierAccounts);
   }
 }

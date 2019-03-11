@@ -21,7 +21,7 @@ import { HttpConfigInterceptor } from "./core/services/ajax/httpconfig.intercept
     LoginComponent,
     DeletePopupComponent,
     ReportsComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,4 +42,4 @@ import { HttpConfigInterceptor } from "./core/services/ajax/httpconfig.intercept
   ],
   entryComponents: [DeletePopupComponent, EmployeeDetailsComponent]
 })
-export class AppModule {}
+export class AppModule { }
