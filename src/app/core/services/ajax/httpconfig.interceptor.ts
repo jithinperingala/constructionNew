@@ -29,7 +29,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
       });
     }
     console.log("loggedUser", usedData);
-    if (usedData !== undefined || usedData !== null) {
+    if (usedData && (usedData !== undefined || usedData !== null)) {
       request = request.clone({
         headers: request.headers.set("loggedUser", usedData)
       });
