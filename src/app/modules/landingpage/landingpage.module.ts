@@ -13,7 +13,7 @@ import { MeterialModule } from 'src/app/shared/modules/meterial/meterial.module'
     LandingpageRoutingModule,
     MeterialModule
   ],
-  declarations: [LandingpageComponent, NavbarComponent,
+  declarations: [LandingpageComponent, NavbarComponent, FooterComponent
   ]
 })
 export class LandingpageModule { }
