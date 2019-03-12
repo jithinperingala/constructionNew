@@ -40,14 +40,16 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
     <a mat-button class="dropdown-item" routerLink="employee/search">Employee Details</a>
-    <mat-divider></mat-divider>
+    <!-- <mat-divider></mat-divider>
     <a mat-button class="dropdown-item" routerLink="report/attendence">Attendence</a>
     <mat-divider></mat-divider>
     <a mat-button class="dropdown-item" routerLink="report/labor">Fund Transfer</a>
     <mat-divider></mat-divider>
-    <a mat-button class="dropdown-item" routerLink="report/supplier">Labor Payment</a>
+    <a mat-button class="dropdown-item" routerLink="report/supplier">Labor Payment</a> -->
     <mat-divider></mat-divider>
-    <a mat-button class="dropdown-item" routerLink="report/condractor">Sub-contractor Payment</a>
+    <a mat-button class="dropdown-item" [routerLink]="['report/vendor',appConstants.contractor]">contractor Payment</a>
+    <mat-divider></mat-divider>
+    <a mat-button class="dropdown-item" [routerLink]="['report/vendor',appConstants.supplier]">supplier Payment</a>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>

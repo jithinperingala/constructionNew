@@ -6,19 +6,15 @@ import { VendorComponent } from './payment/vendor/vendor.component';
 
 const routes: Routes = [
   {
-    path:'attendence',
-    component:AttendenceComponent
+    path: 'attendence',
+    component: AttendenceComponent
   },
   {
-    path:'labor',
-    component:LaborComponent
+    path: 'labor',
+    component: LaborComponent
   }, {
-    path:'supplier',
-    component:VendorComponent
-  }
-  , {
-    path:'condractor',
-    component:VendorComponent
+    path: 'vendor/:id',
+    component: VendorComponent
   }
 ];
 
