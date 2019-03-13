@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FromToService } from '../../services/accounts/from-to.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-to-account-dropdown',
@@ -9,7 +10,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ToAccountDropdownComponent implements OnInit, OnChanges {
 
-  constructor(private fromService: FromToService, private fb: FormBuilder) { }
+  constructor(private fromService: FromToService, private fb: FormBuilder, private userService: UserService) { }
 
   toUsers
   accountsDetails
@@ -35,7 +36,7 @@ export class ToAccountDropdownComponent implements OnInit, OnChanges {
   }
   getToData() {
     if (this.selectedPaymentType)
-      this.fromService.getToData(44, this.selectedPaymentType).subscribe(
+      this.fromService.getToData(this.userService.loggeduser, this.selectedPaymentType).subscribe(
         res => {
           console.log(res)
           this.toUsers = res[0]
