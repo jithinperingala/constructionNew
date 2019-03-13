@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FromToService } from '../../services/accounts/from-to.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-from-account-dropdown',
@@ -11,7 +12,7 @@ export class FromAccountDropdownComponent implements OnInit {
   fromUsers
   accountsDetails
   fromForm: FormGroup;
-  constructor(private fromService: FromToService, private fb: FormBuilder) { }
+  constructor(private fromService: FromToService, private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
     this.fromForm = this.fb.group({
@@ -27,7 +28,8 @@ export class FromAccountDropdownComponent implements OnInit {
       return this.fromForm.value
   }
   getFromEmployeeDetails() {
-    this.fromService.getFromData(44).subscribe(
+    console.log("logg", this.userService.loggeduser)
+    this.fromService.getFromData(this.userService.loggeduser).subscribe(
       res => {
         console.log(res)
         this.fromUsers = res[0]
