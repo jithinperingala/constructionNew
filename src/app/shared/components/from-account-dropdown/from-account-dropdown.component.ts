@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FromToService } from '../../services/accounts/from-to.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user/user.service';
@@ -21,6 +21,7 @@ export class FromAccountDropdownComponent implements OnInit {
     });
     this.getFromEmployeeDetails()
   }
+  @Input() selectedPaymentType
   getFormValues() {
     if (this.fromForm.invalid)
       return "Form Invalid"
@@ -37,7 +38,7 @@ export class FromAccountDropdownComponent implements OnInit {
     )
   }
   getFromUserAccounts(dta) {
-    this.fromService.getAccountData(dta.value, 'C').subscribe(
+    this.fromService.getAccountData(dta.value, this.selectedPaymentType).subscribe(
       res => {
         console.log(res)
         this.accountsDetails = res[0]

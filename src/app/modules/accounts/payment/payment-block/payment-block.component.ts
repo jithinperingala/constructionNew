@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { FromAccountDropdownComponent } from 'src/app/shared/components/from-account-dropdown/from-account-dropdown.component';
 import { ToAccountDropdownComponent } from 'src/app/shared/components/to-account-dropdown/to-account-dropdown.component';
 
@@ -19,9 +19,9 @@ export class PaymentBlockComponent implements OnInit {
   @Output() typeChange = new EventEmitter();
   ngOnInit() {
     this.paymentBlock = this.fb.group({
-      date: ["", [Validators.required]],
+      date: [(new Date()).toISOString(), [Validators.required]],
       paymentType: ["", [Validators.required]],
-      cachTransferMode: ["Bank", [Validators.required]],
+      cachTransferMode: [0, [Validators.required]],
       amount: ["", [Validators.required]],
       description: ["", []],
     });
